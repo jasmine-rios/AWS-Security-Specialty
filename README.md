@@ -23,3 +23,7 @@ My score at the begining of testing: 65%
 - (AWS Certified Security - Specialty Certification Homepage)[https://aws.amazon.com/certification/certified-security-specialty/]
 
 - [AWS Certified Security - Specialty (SCS-C03) Exam Guide](https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/certification/approved/pdfs/docs-security-spec/AWS-Certified-Security-Specialty_Exam-Guide-03.pdf)
+
+## References
+
+- [[Your idol" song](Kpop Demon Hunters Movie)
