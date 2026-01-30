@@ -1,3 +1,4 @@
+# Chapter 3: Management and Security Governance
 # Delegated Administration
 
 The term delegated administrator is used when one or more member accounts are used as administrator of a specific service that allows you to reduce the usage of the management account.
@@ -35,6 +36,19 @@ AWS Trusted Advisor: Provides guidance and recommendations to improve security, 
 AWS Control Tower: Build and govern a multi-account environment following best practices and security recommendations by setting up a landing zone using multiple AWS services such as AWS Organization, AWS identity center, and AWS Service catalog. Enables best practices, extending capabilities of AWS Organizations.
 Account factory in Control Tower alllows you to provision new accounts and infrastructure, facilitating account deployment and governance by enforcing standardized configuration and security controls in your environment
 
+Landing zone: Reference architecture that holds all accounts in your orgnaization, and it is structured using organizational units, roles, users. and other resources.
+The common structure of a landing zone includes the following:
+  - Root: Parent that contains all other OUs
+  - Security OU: This organizational unit contains two accounts created by Control Tower--Log Archive and Audit. It is possible to customize those names when launchuing your landing zone or when bringing existing accounts under Control Tower management
+  - Sandbox OU: This is an optional organizational unit commonly used for experimentation purposes.
+  - Identity Directory: This cloud-native directory in IAM Identity Center holds preconfigured groups and permissions. However, you can also manage your own identity provider if you do not want to use the default configuration.
+  - Users: These are the identities that youe users can assume to log in to your accounts. We highly recommend you federate with your authoritice directory service.
 
+## Controls
+
+A control is a security guardrail that supports the governance of your AWS accounts.
+There are three types of controls:
+  - Preventative: As its name implies, it prevents an action from occuring, for example, removing CloudTrail from the Log Archive account.
+  - Detective: This control detects specific events when they occur and logs the action for further analysis in a Config Compliance Rule.
 
 
