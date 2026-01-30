@@ -33,8 +33,12 @@ AWS IAM Identity Center: COnfigure and manage user access to AWS accounts and ap
 
 AWS Trusted Advisor: Provides guidance and recommendations to improve security, performance, cost optimization, and reliability
 
+## AWS Control Tower
+
 AWS Control Tower: Build and govern a multi-account environment following best practices and security recommendations by setting up a landing zone using multiple AWS services such as AWS Organization, AWS identity center, and AWS Service catalog. Enables best practices, extending capabilities of AWS Organizations.
 Account factory in Control Tower alllows you to provision new accounts and infrastructure, facilitating account deployment and governance by enforcing standardized configuration and security controls in your environment
+
+### Landing Zone
 
 Landing zone: Reference architecture that holds all accounts in your orgnaization, and it is structured using organizational units, roles, users. and other resources.
 The common structure of a landing zone includes the following:
@@ -44,11 +48,32 @@ The common structure of a landing zone includes the following:
   - Identity Directory: This cloud-native directory in IAM Identity Center holds preconfigured groups and permissions. However, you can also manage your own identity provider if you do not want to use the default configuration.
   - Users: These are the identities that youe users can assume to log in to your accounts. We highly recommend you federate with your authoritice directory service.
 
-## Controls
+### Controls
 
 A control is a security guardrail that supports the governance of your AWS accounts.
 There are three types of controls:
   - Preventative: As its name implies, it prevents an action from occuring, for example, removing CloudTrail from the Log Archive account.
   - Detective: This control detects specific events when they occur and logs the action for further analysis in a Config Compliance Rule.
+  - Proactive: These rules have the capacity to check compliance before the actual resource is provisioned in your accounts using Infrastructure as Code (IaC) with CloudFormation hooks, preventing the creation if resources are not compliant.
+
+Three categories of guidance apply for controls: manadatory, strongly recommended, and elective. You can decude to enforce strongly recommended and elective controls from Control Tower, but mandatory controls cannot be changed.
+
+### Account Factory
+
+Control tower offers Account factory as a built-in account template that can be used to standardize the provisioning of a new account with approved account settings. 
+It is possible to update, manage, and even close accounts that you create using Account Factory.
+In addition, it is possible to use this feature to change the orgniazational unit for an account in your environment.
+
+This Account Factory feature is also known as a "vending machine", as it creates and enrolls new AWS accounts and automates the process of configuring controls and policies for those accounts that are joining your organization.
+
+## Secure and Consistent Infrastructure Deployment in AWS
+
+It is possible to treat deployment of infrastructure in the same way that developers treat code development: using principles of DevOps. That means code is expected to be developed in a defined format and syntax and stored in a source control system that logs historic changes to create applications in a consistent, reliable, and repeatable way.
+
+### Infrastructure as Code using AWS CloudFormation
+
+
+
+
 
 
