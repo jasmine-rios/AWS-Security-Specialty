@@ -128,7 +128,57 @@ Using Service Catalog, you can offer a curated catalog of resouces for your cust
 
 Users can browse a light of products they have access to, select what they need, and launch it on their own, while administators can restrict where the product can be deployed, the type of instances to be used, and many other configuration options, resulting in a standardized provisioned product.
 
-Administrators of catalogs can use resou
+Administrators of catalogs can use resource tags during deployment and then grant access to the final product using AWS IAM users, groups, policies, and conditions
+
+Add a product to any number of portfolios without creating additional copy.
+Updating the product to a new version will propagate the update to every portfolio that references it.
+
+## Evaluating Compliance
+
+One important aspect of evaludating compliance in your environment is to understand what needs to be protected and apply a correct classification to the data so you can, in turn, apply adequate security controls to protect it.
+
+In this section, we review three important services that can help you effectively evaluate compliance in your AWS workloads.
+
+### Data classification Using Amazon Macie
+
+Using a service such as Amazon Macie, you can automatically discover sensitive data in your Amazon S3 buckets.
+The service gives you the possibility of doing that in two different ways.
+The first is by evaluating your inventory on a daily basis and smapling techniques to identify representative objects from your buckets.
+The second way is enabling discovery jobs that provide a deeper, more targeted analysis where you can select the scope and criteria to be used.
+In addition, you can configure on-demand only once or on a recurring basis to maintain continous monitoring of your data
+
+#### Data Identifiers
+
+Amazon Macie has two types of data identifiers that you can use to discover sensitive data in your buckets:
+- AWS-managed: These are built-in identifiers designed to detect specific types of senstive data. For example, AWS access keys, credit card numbers or identification numbers from multiple regions and countries, personally identifiable information (PII), and financial information.
+- Custom identifiers: You can create custom criteria for detecting senstivie data. Identifiers are build using regular expressions (regex), defining a text pattern to match character sequence and a proximity rule. These can be used to define specific use cases that are not covered by AWS-managed identifiers.
+
+There is a additional element that you can use to refine the results.
+The *allow lists* function gives you the ability to specify checks and patterns to be ignored during discovery of sensitive data, for example, credit card numbers when using a test enviornment.
+Amazon Macie will not report an occurence of matching if an element is declared in your list and found in managed or custom identifiers.
+
+Amazon Macie can help you meet compliance with your data security requirements by producing reports of sensitive data found during analysis.
+A finding is sensitive data found in an S3 object, and a data discovery result is the actual record of the analysis performed.
+
+At the time of writing this chapter, Amazon Macie only supports discovering sensitive data in Amazon S3 buckets.
+However, keep in mind that you can still move data, such as snapshots of databases in parquet format or any other format supported by the service, temporarily to buckets for analysis.
+
+#### Evaluate Configuration Using AWS Config
+
+AWS Config is a service that can help you audit resources to ensure compliance with policies and best practices by accessing historical configuration and changes.
+A good example is the possibility of accessing historical configuration of security groups assigned to an EC2 instance, including port rules that were open at a specific time.
+
+You can use Config Rules or Conformance Packs to configure AWS Config.
+The first allows you to evaluate compliance for the type of resource you select, to record activity, and send the results to an Amazon S3 bucket, or to set up a topic to get notifications using Amazon SNS.
+The second is a collection of rules that can be deployed and monitored as a single entity.
+
+The service also gives you the opportunity to use aggregators to get a centralized view of your resource inventory and compliance. 
+An aggregator collects configuration and compliance data from multiple accounts and regions in a single place.
+
+
+
+
+
 
 
 
