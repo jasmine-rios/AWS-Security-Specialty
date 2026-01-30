@@ -72,8 +72,63 @@ It is possible to treat deployment of infrastructure in the same way that develo
 
 ### Infrastructure as Code using AWS CloudFormation
 
+AWS Cloudformation allows you to create templates to design, provision, and manage AWS resources in a predictable and reliable way by taking care of configurations and dependencies.
 
+It is possible to replicate your infrastructure in different accounts or even different regions, reusing your templates to create resources in a repeatavle manner.
+Since those templates are text (YAML or JSON), you can easily track changes using a version control system, opening the possibility to roll back changes or just use a previous version if needed
 
+#### Stacks
+
+CloudFormation offers a simple way to manage Infrastructure as Code, using templates to create a **stack** as a collection of resources that are provisioned in an orderly manner as a single unit.
+The service makes underlying API calls to the same services declared in your template; therefore, it needs proper permissions to successfully complete those actions.
+
+Since all resouces in a stack are treated as a group, they all need to be created or deleted for the stack to work properly.
+If a resource cannot be created, the CloudFormation service rolls back and deletes all resouces created previously. If a resouce cannot be deleted, all other resouces are retained until the stack can be successfully deleted.
+
+When you need to make changes to a stack, you can apply changes instead of deleting or creating a completely new stack. 
+To do so, you submit the template, and CloudFormation compares the current state of your stack and updates only the changed resources.
+
+#### StackSets
+
+AWS Cloudformation StackSets is a feature that extends capabilities of stacks by enabling you to manage stacks in multiple accounts and regions.
+You can manage your StackSets from a central administrator account and use your templates as a source for provisioning stacks with resources on target accounts and regions in your organization.
+
+### Tagging Strategies
+
+Tags are useful to manage, identify, search, and filter resouces. They are commonly used to add categories by purpose, owner, organizational unit, billing department, or even environment.
+Tag names and tag values are case sensitive.
+
+Another common use case is to get billing reports with costs broken down by tag.
+
+It is important to highlight that IAM policies support tag-based conditions, letting you enforce permissions based on tags or tags values.
+However, keep in mind that support for tag-based and resouce-level permissions is specific per service.
+Be sure to restrict who can modify tags of your resources when using them to control access through IAM policies to avoid bypassing your access controls.
+
+#### Best practices for Tagging
+
+Some best practices to use for your tagging strategy are as follows:
+
+1. Use a standardized, case-sensitive format.
+2. Do not include sensitive data in tags.
+3. Use automated tools such as Tag Editor to helo manage resouce tags.
+4. Enforce tagging standards using AWS Organization through service control policies.
+
+### Sharing Resources across AWS Accounts
+
+In a multi-account environment, it is possible to create a resource and share it with other accounts or organizational units using AWS Resource Mananger (AWS RAM).
+This feature gives you the possibility of avoiding duplication of resources in every account, reducing operational overhead and simplifying security management, since all access in RAM resources is managed by a single set of policies and permissions.
+
+A good example of using AWS RAM is for sharing a private certificate authority (CA) resouce, allowing AWS Certificate Manager users in other accounts to issue certificates signed by your centralized CA.
+
+### Deploying Portfolios of Approved Services
+
+AWS Service Catalog is a service that allows you to centrally manage a portfolio of resources to govern your Infrastructure as Code (IaC) templates, which can be developed in CloudFormation or Terraform standards.
+
+Using Service Catalog, you can offer a curated catalog of resouces for your customers to quickly provision approved architectures without needing direct access to underlying services. These services can include container images, servers, databases, and more.
+
+Users can browse a light of products they have access to, select what they need, and launch it on their own, while administators can restrict where the product can be deployed, the type of instances to be used, and many other configuration options, resulting in a standardized provisioned product.
+
+Administrators of catalogs can use resou
 
 
 
