@@ -261,8 +261,10 @@ To execute follow these steps to **/change root user password/**
 Follow these steps to enable virtual MFA for the root account:
 
 1. Log in to your AWS account using your root account credentials.
+
 2. Click the name of your account and then select Security Credentials.
-3. 
+
+3. On the My Security Credentials screen, close 
 
 
 
