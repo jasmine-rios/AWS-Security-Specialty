@@ -175,10 +175,94 @@ The second is a collection of rules that can be deployed and monitored as a sing
 The service also gives you the opportunity to use aggregators to get a centralized view of your resource inventory and compliance. 
 An aggregator collects configuration and compliance data from multiple accounts and regions in a single place.
 
+# Chapter 4 Identity and Access Management
+
+## Introduction
+
+Various ways to do AWS IAM services:
+- AWS Management Console
+- AWS Command Line Tools
+- AWS Software Development Kits (SDKs)
+- IAM Query API
+
+**AWS IAM features that can help you secure your AWS cloud environment, including multifactor authentication (MFA) rotating keys, federation, AWS IAM roles, and other security best practices.**
+
+You might want to consider Amazon Cognito for identity management?
+**why?**
+
+Because Amazon Cogninito is SSO and works with a lot of different providers
+
+What are *principals*?
+
+A principal is an AWS IAM entity that has permission to interact with resouces in the AWS cloud wheather permanent or temporary, this principal can represent a human user, a resource, or an application.
+
+There are 3 types of principals:
+
+- root users
+- IAM users
+- IAM roles (or temporary security credentials)
+
+Principals include federated users and assumed roles.
+
+## Root users
+
+When you create your first account on AWS, you begin with a single identity that has complete access to all AWS resources in the account, this identity is called the *root user identity*.
+
+You can log into the AWS Console using the email address and password that you provided when you created your account/
+
+The root user credentials give you unrestricted access to all the AWS services in your account.
+
+This access covers (but is not limited to) viewing billing information, changing your root account password, and performing the complete termination of your account and deletion of its resource
+
+For daily operations in your AWS account in your AWS account, it is not necessary to use the root user.
+Moreover, AWS highly recommends that you **not share the root user credentials with anyone, simply because doing so gives them unrestricted access to your account**
+There is no way to restrict the access given to the root user in the account.
+However, if the account is a member of an AWS Organization, it is possible to use SCPs to restrict root yser account permissions.
+
+Once you have set up your AWS account, the most important thing that you should do is protect your root user credentials by following these recommendations:
+
+- Use a **strong password** to help protect account-level access to the management console.
+- Enable virtual or hardware MFA with time-based one-time passwords on yourAWS root user account
+- Remember that you should avoid creating an access key for programmatic access to your root user account unless such a procedure is manadatory. You should create another IAM user with the required permissions to perform the necessary actions on your account. It is possible to give administrative permissions to an IAM user
+- In case you must maintain an access key to your root user account, you should regularly **rotate it** using the AWS Console.
+You need to log in using your account's email address and password to rotate (or even delete) your access key credentials for your root account.
+- Remember, **never share your root user password or access keys** with anyone.
+- Terminate and destroy all your resource access to the **root user account can terminate and destroy all resouces in your AWS account**
+
+## Resetting Root Users
+
+You **MUST** be signed in as the root user to change the root user password or anything else related to the **user**.
+
+To execute follow these steps to **/change root user password/**
+
+1. Use your email address and password to log in to the AWS Console as yhe root user.
+
+2. Click on the name of your account in the upper-right corner
+
+3. Choose Account option from the menu.
+
+4. In the Account page, next to the Account Setting pane, click Edit.
+
+5. Once you click, you will be redirected to the Login page to confirm your root credentials. From the options presented, choose Root User and enter the email registered for your root account.
+
+6. Click Next, and on the following screen, enter your root password and click the Sign In button.
+
+7. If you have MFA enabled on your root account, enter the MFA code at the prompt.
+
+8. After you confirm your root credentials, you'll see the Update Account Settings page. Click the Edit button next to the password field.
+
+9. Use a strong password for you account, with a minimum of 8 and a maximum of 128 characters. It should contain a combination of the following character types: uppercase, lowercase, numbers, and special characters. Don't use simple passwords, such as *january*, *password*. *pa4ssw0rd*, or your date of birth, which can be easily cracked through **dictionary attacks**.
+
+**TIP**
+  If you need to reset the root account credentials, remember to delete the previous two-factor authentication information, as well as any access and secret keys that might exist for the root account.
+  It is important to remember to **enable MFA on the account and avoid creating root access keys**
 
 
+Follow these steps to enable virtual MFA for the root account:
 
-
+1. Log in to your AWS account using your root account credentials.
+2. Click the name of your account and then select Security Credentials.
+3. 
 
 
 
