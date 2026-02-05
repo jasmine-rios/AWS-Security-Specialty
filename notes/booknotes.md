@@ -264,7 +264,57 @@ Follow these steps to enable virtual MFA for the root account:
 
 2. Click the name of your account and then select Security Credentials.
 
-3. On the My Security Credentials screen, close 
+3. On the My Security Credentials screen, close to the Multifactor Authentication (MFA) pane, click on Assign MFA device.
+
+4. On the select MFA Device screen, type a name in the Device Name field and select the Authenticator App Option. Then click Next.
+
+5. Ensure that you have an authenticator app on your mobile phone or computer. A list of compatible applications can be found on the setup device screen.
+
+6. On the next screen, click Show QR Code and scan it using your authenticator app.
+
+7. Enter the two consecutive codes in the MFA code 1 and MFA Code 2 fields.
+
+8. Click Add MFA. Now, every time you login with your root credentials, you must provide an MFA code as part of the login process
+
+### IAM Users
+
+IAM users are people or applications in your organization.
+
+They live within the AWS accounts where they are created but may have cross-account permissions if configured to do so.
+
+Each IAM user has its own username and password that give them access to the AWS Console.
+
+Additionally, it is possible to create an access key to provide users with programmatic access to AWS resources.
+
+IAM users is an entity that gives administrators the granularity required to control how users should interact with AWS resources.
+
+Note that an IAM user is not necessarily a person.
+
+It can be a an application (such as SalesApp) that runs on your AWS or on your corportate network and needs to interact with resources in your account.
+
+If your application is running on AWS, you should use IAM roles to provide temporary credentials for the application to access AWS resources.
+
+However, if your application is running on your corporate network, you can create an IAM user and generate access keys, so SalesApp can have the required credentials to access your resources.
+
+In order to avoid using your root user account, you should create an IAM user or assume an IAM role and then assign administrator permissions for your account so that you can add more users when needed.
+
+**Note**
+
+Always remember to enforce the principle of least privilege when creating your users--that is, users should have only the minimum level of permissions they need to perform their assigned tasks.
+
+You should define fine-grained policies associated with your IAM users.
+
+**End of Note**
+
+#### Exercise: Create an IAM user with adminstrator access permissions
+
+In this exervice, you will learn how to create a new IAM user with adminsitrator permissions.
+
+1. Log in to your AWS account and open the IAM service. Select Users from the left-sode menu.
+
+2. From the Users pane, click Create User.
+
+3.
 
 
 
