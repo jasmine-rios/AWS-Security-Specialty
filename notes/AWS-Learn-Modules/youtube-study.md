@@ -36,7 +36,9 @@ Evaluate exposed access keys
 - Disable keys, create new keys
 
 ## Lesson 2: Incident Response
-[2.1 Abuse Notice Strategies]
+
+[2.1 Abuse Notice Strategies](## 2.2 Incident Response Basics)
+
 [2.2 Incident ]
 
 ## 2.2 Incident Response Basics
