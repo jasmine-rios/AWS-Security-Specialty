@@ -410,5 +410,5 @@ Roles for cross-account access grant users of one AWS account access to resource
 
 The regular permissions for a developer in the Dev account do not allow them to directly access the resources in the Prod account.
 
-However, it is possilbe to define a trust policy
+However, it is possible to define a trust policy
 
