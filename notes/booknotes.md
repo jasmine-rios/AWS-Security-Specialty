@@ -369,7 +369,46 @@ Roles can be used to delegate access to resource that services, applications, or
 
 For example, you can allow an application to assume a role that provides access to a resource in a different AWS account even if its orgininal permissions did not allow such access.
 
-Another example is if your user only has access to a development account and you grant them the ability to publish content in teh production account and you grant them the ability to publish
+Another example is if your user only has access to a development account and you grant them the ability to publish content in teh production account and you grant them the ability to publish content in the production account by assuming an IAM role.
+
+Yet another example is if you grant an external application access to AWS resources, but instead of using fixed credentials inside the application (which are easy to extract and hard rotate once deployed), you can leverage an IAM an IAM role for this purpose.
+
+Futhermore, if you want to give access to users who already have identities on your corporate authoritive directory or from another IdP, it is possible to change these credentials to **IAM role credentials that provide them with temporary access to AWS resouces**.
+
+IAM roles can be used in following scenarios:
+
+- Grant permissions to an **IAM user** in the same AWS account as the role.
+
+- Grant permissions to an IAM user in a different AWS account than the role, which is also called **cross-account access**.
+
+- Provide access for non-AWS workloads using temporary credentials.
+
+- Provide access to your accounts by a third party by creating roles to assume with correct permissions.
+
+- **Grant permissions to AWS services by controlling what a service can access using service roles.**
+
+- In user federation scanrios, it's possible to use IAM roles to grant permissions to external users authenticated through a trusted IdP.
+
+#### AWS Security Token Service
+
+The AWS Security Token Service is designed to provide trusted users and services with **temporary security credentials** that control access to AWS resources.
+
+This service provides the foundation for other features such as cross-account access, service roles, and identity federation.
 
 
+The main differences between long-term access keys and temporary security credentials issued by AWS STS are as follows:
+
+- When you issue a temporary security credential, you can specify the expiration interval of that credentials, which can range from a few minutes to several hours. **Once expired, these credentials are no longer recognized by AWS, and any API requests made with them are denied**.
+
+- Temporary credentials are dynamic and generated every time a user requests them. **A user can renew the temporary credentials before their expiration if they have permission to do so**
+
+#### Roles for Cross-Account Access
+
+Roles for cross-account access grant users of one AWS account access to resources in a different account. Such a procedure enables a different set of scenarios such as API, CLI, calls or AWS console access.
+
+**One common use case can be two AWS accounts, such as Dev and Prod, where users from the Dev account need specific access on the Prod account** 
+
+The regular permissions for a developer in the Dev account do not allow them to directly access the resources in the Prod account.
+
+However, it is possilbe to define a trust policy
 
