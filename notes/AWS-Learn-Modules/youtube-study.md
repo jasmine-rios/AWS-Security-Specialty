@@ -350,6 +350,83 @@ Contain the compromised resource
 
     - Better monitoring, actice responses
 
-    ## 2.8 Question Breakdown
+## Module 3: Logging and Monitoring
 
-    
+Contains two lessons:
+
+- Lesson 3: Security Monitoring
+
+- Lesson 4: Logging Solutions
+
+### Objectives
+
+- 3.1 Infrastructure Security Monitoring
+
+- 3.2 Application Security Monitoring
+
+- 3.3 Account Security Monitoring
+
+- 3.4 Troublshooting Security Monitoring
+
+- 3.5 Case Study: Broken Monitoring
+
+- 3.6 Question Breakdown
+
+### Question Domain Main Points
+
+1. Design and implement security monitoring and alerting
+
+2. Troubleshoot security monitoring and alerting
+
+3. Design and implement a logging solution
+
+4. Troubleshoot logging solutions
+
+### Infrastructure Security Monitoring
+
+#### GuardDuty
+
+Cloudtrail logs go to Amazon GuardDuty
+
+VPC Flow logs go into Amazon GuardDuty
+
+DNS Logs go into Amazon GuardDuty
+
+#### OS
+
+OS (Operating System) Logs can be sent to S3 where you can use Athen Queries on it
+
+OS logs can be sent to CloudWatch Logs Insights
+
+OS logs can be sent to Splunk
+
+#### Config
+
+Config rules where you create a stream of configuration changes and you apply logic to that stream to determine if a change matches the rule
+
+Security Group Changes are captured by Config rules
+
+A new instance launch that doesn't met criteria is captured by Config rules
+
+Changes or additions to Route Table Addition
+
+#### Amazon Inspector
+
+Focuses specifically on EC2 operating system vulnerability
+
+The way this works is by installing an agent, determining a rule set that you would like to execute on the install then actually running the job
+
+Can identify unencrypted network traffic
+
+Unused TCP listeners, over a period of time tells about which of them isn't being used and sends to you as a finding
+
+## 3.2 Application Security Monitoring
+
+### Application Security Monitoring
+
+Lambda Execution Logs gets pushed to CloudWatch Logs
+
+EC2 Application logs gets pushed to CloudWatch Logs
+
+ECS/EKS Container logs gets pushed to CloudWatch Logs
+
