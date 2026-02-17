@@ -470,3 +470,34 @@ Root User MFA Enabled; if not compliant, then Config rules should pick up on tha
 
 ## 3.4 Troublshooting Security Monitoring
 
+### Troubleshooting Scenarios
+
+- Security event mis-labeled as performance event
+
+- Vulnerable libraries identified on EC2 instances
+
+### Troublshooting Tools
+
+- Amazon Inspector findings
+- CloudWatch alarms and metrics
+- CloudTrail logs
+- CloudWatch Logs Insights
+- Unclear requirements for security monitoring
+- Poorly implemented CloudWatch Alarms
+- Gaps in OS update procedures and compliance checking
+
+## 3.5 Case Study: Broken Monitoring
+
+Scenario: Recent security event never generalized notifications
+
+How can you:
+
+1. Trace why notifications have not recieved
+
+2. Implement missing monitoring
+
+3. Ensure compliance going forward?
+
+### Question Breakdown
+
+An application running in EC2 has a requirement for independent, periodic security checks against the application coode. These checks can send notifications upon warning, but for critical alerts they 
