@@ -424,9 +424,49 @@ Unused TCP listeners, over a period of time tells about which of them isn't bein
 
 ### Application Security Monitoring
 
+#### CloudWatch Logs
+
 Lambda Execution Logs gets pushed to CloudWatch Logs
 
 EC2 Application logs gets pushed to CloudWatch Logs
 
 ECS/EKS Container logs gets pushed to CloudWatch Logs
+
+#### CloudTrail
+
+Coginto User Authentication Logs goes into CloudTrail
+
+Step Function logs go into CloudTrial
+
+Deployments via CodeDeploy go into CloudTrail
+
+#### S3
+
+ALB Access Logs go into S3
+
+Cloudfront Access Logs go into S3
+
+Redshift audit logs go into S3
+
+## 3.3 Account Security Monitoring
+
+### Account Security Monitoring
+
+#### CloudWatch Events
+
+GuardDuty Findings go to CloudWatch Events bus in addition to sending the actual log for CloudWatch Logs
+
+CloudTrail Events can generate events that are sent to CloudBus
+
+AWS Organization Events allows you to connect multiple accounts and manage them like you would with a directory and is sent to CloudWatch Events
+
+#### Config rules
+
+CloudTrail enabled; if not then no compliant and generates a notification 
+
+IAM User Key Rotation if not compliant, then config rules should pick up on that
+
+Root User MFA Enabled; if not compliant, then Config rules should pick up on that
+
+## 3.4 Troublshooting Security Monitoring
 
