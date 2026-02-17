@@ -332,4 +332,24 @@ Contain the compromised resource
         - Persist all logs and data points in durable storage for post mortem analysis
     
     Post mortem and feedback loop
+        - We have Forensic data out goal is to have insights so we can make recommendations
+
+        In order to make this happen there needs to be some middle ground with the storage and Insights & Recommendations
+
+        One way of doing this is by using RedShift queries, by using redshift spectrum, you can query S3 data as if it was apart of a postgre database
+
+        You can query the data directly as well with Athena queries
+
+        We could perform jobs that require code to be executed using AWS Glue
+
+        QuickSight dashboard is more a graphical interface for us to explore this data like it being a database
+
+    Turn recommendations into action
+
+    - More restrictive security group rules
+
+    - Better monitoring, actice responses
+
+    ## 2.8 Question Breakdown
+
     
