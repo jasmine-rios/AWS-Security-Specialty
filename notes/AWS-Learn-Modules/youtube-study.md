@@ -217,4 +217,119 @@ Second step in incident response plan.
 
 - Evidence retention
     How do we hold on to the forensic data gathered in such a way that doesn't compromise the account?
-- 
+    - S3
+    - Glacier
+    - AMI
+    - Snapshots of comprimised volumes
+
+- Proposals for improvement
+
+    - Least privilege
+        - Access control
+        - Network permissions
+    - Monitoring
+        - Better dashboards
+        - Active response
+
+## 2.7 Case Study: Compromised EC2
+
+Put incident repsonse plan into action with a scenario 
+
+Scenario: One of your EC2 instances has been compromised by an unknown actor
+
+How can you:
+    1. Identify compromised resources
+    2. Identify bast radius
+    3. Mitigate the event
+    4. Recover Safely?
+
+### Identify Compromised Resource
+
+Option 1: AWS abuse notice via email
+    When you get the abuse email there are going to be some questions:
+    
+    Who?
+    What?
+    When?
+    Where?
+    Why?
+
+    We aren't going to have a lot of details
+    - No context
+    - Few data points = suboptimal
+
+Option 2: Identify through existing instrumentation
+    - CloudWatch
+    - VPC Flow Logs
+    - EC2 OS Firewall
+
+    ^This is going to help us get data points on security being ^
+
+    In by doing this "Data point correlation" with our viewed behavior with actions that are being taken.
+
+    This allows us to make Informed Decisions as how to move ahead
+
+#### Identify Blast Radius
+
+Use AWS ecosystem to determine inventory and relationships
+
+- Compromised instance
+- AWS Config
+
+#### Migrate the event
+
+Contain the compromised resource
+
+- EC2 and application security group
+    In the Security Group inbound it can look like
+
+    Security Group Inbound
+
+    | Protocol  | Port |  Source    |
+    |-------|-----|-------|
+    | ICMP | ALL | VPC CIDR |
+    | TCP | 22 | Bastion SG |
+    | TCP | 8080 | ALB SG |
+
+    Security Group Outbound
+
+    | Protocol  | Port |  Source    |
+    |-------|-----|-------|
+    | none | none | none |
+
+    Create Containment SG to place the EC2 instance
+    For this security group the SG rules will look like
+
+    Security Group Inbound
+
+    | Protocol  | Port |  Source    |
+    |-------|-----|-------|
+    | none | none | none |
+
+    Security Group Outbound
+
+    | Protocol  | Port |  Source    |
+    |-------|-----|-------|
+    | none | none | none |
+
+    Detach SG from EC2 instance
+    
+    Then attach SG to EC2 instance
+
+    net effect: EC2 instance isolated from network
+
+    Once we have assurance that the compromised instance can not do any further damage, now becomes a matter of recovering
+
+    Leave isolated resources in place for analysis
+
+    Assuming we have created our backups of AMI of EC2 instance that is preconfigured we can simply launch another resource to replace the capacity
+
+    The resource will be placed in the correct Application Security Group
+
+    #### Recover Safely
+
+    Restore capacity while retaining forensic data
+        - Persist all logs and data points in durable storage for post mortem analysis
+    
+    Post mortem and feedback loop
+    
