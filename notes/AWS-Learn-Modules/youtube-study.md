@@ -500,4 +500,60 @@ How can you:
 
 ### Question Breakdown
 
-An application running in EC2 has a requirement for independent, periodic security checks against the application coode. These checks can send notifications upon warning, but for critical alerts they 
+An application running in **EC2** has a requirement for **independent, periodic security checks against the application code**.
+
+These checks can send **notifications upon warning**, but for **critical alerts they must shut down the application on the instance**. 
+
+How can your security team perform these checks **without injecting code** into the application, while meeting the notification and active response requirement?
+
+C. Install CloudWatch Logs agent on the instance, streaming all application logs.
+Create a CloudWatch Logs metric filter with alarms for notifications and a lambda function to stop the applications.
+
+**Not the right answer** as this ^ does not act as an independent audit, relying on application logs
+
+**The right answer is** 
+B. Deploy a second application on the EC2 instance with the security audit code. Send security audit results to CloudWatch Events, and create a rule to send warning events to SNS, and critical events to SSM Run Command to stop the application.
+
+# Lesson 4: Logging Solutions
+
+4.1 Access Logs
+
+4.2 Execution Logs
+
+4.3 Security Logs
+
+4.4 Log Processing
+
+4.5 Case Study: Automated Log Management
+
+4.6 Question Breakdown
+
+## 4.1 Access Logs
+
+If your IT infrastructure is taking web requests from any clients from any location chances are you're generating access logs.
+
+When you generate access logs it becomes important to monitor them both from a performance standpoint, but also from a security there are a number of services in AWS that generate access logs.
+
+it's in your best interest to know how those access logs can be stored and what permissions mechanisms are used to do so.
+
+### Access Logs - API Gateway
+
+API gateway came out when Lambda functions came out as they are to be used in tandum with each other.
+
+API gateway pushes it's access logs to CloudWatch Logs (This is an optional feature) if it has an IAM role to do so. 
+
+This IAM role will have to have an allow API Gateway to communicate with cloudwatch logs
+
+Cloudfront can also be used to generate access logs and with this service it's a little bit more primitive with the access control and the location it 
+
+### Access Logs - CloudFront
+
+CloudFront can be used to generate access logs.
+
+These access logs goes into S3 buckets if you have a Bucket ACL
+
+### Access Logs - ELB
+
+ELB or Elastic Load Balancer will put its access logs to S3 as well as long as you have a bucket policy
+
+This is a best effort delivery!!!
