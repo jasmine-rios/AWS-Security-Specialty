@@ -557,3 +557,17 @@ These access logs goes into S3 buckets if you have a Bucket ACL
 ELB or Elastic Load Balancer will put its access logs to S3 as well as long as you have a bucket policy
 
 This is a best effort delivery!!!
+
+### Access Logs - S3
+
+You can transfer access logs from one bucket to another as long as there is a Bucket ACL.
+
+This is best effort delivery!!!
+
+You can enable a S3 bucket to act as a static website and when you do so it uses similar mechanisms to CloudFront to store its access logs.
+
+Using another S3 bucket and a bucket ACL but much like the elastic load balancer and S3 bucket access log mechanism is a **best effort delievery**.
+
+## 4.2 Execution Logs
+
+Execution logs are another important way to monitor the security of requests that are passing through your application infrastructure
