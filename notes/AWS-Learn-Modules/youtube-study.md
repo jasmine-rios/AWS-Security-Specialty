@@ -599,3 +599,12 @@ Amazon Inspector pushes to Amazon inspector as this service acts as a storage la
 You also have an opportunity to send those findings directly to an SNS topic using an IAM role.
 
 Amazon Inspector feeds into Amazon Inspector 
+
+### Security Logs - Amazon GuardDuty
+
+Amazon GuardDuty feed into its self and based on if there is an IAM role, into CloudWatch Events
+
+### Security Logs - AWS CloudTrail
+
+Cloudtrail if IAM role is implemented it feeds into CloudWatch Logs to store the Security Logs
+
