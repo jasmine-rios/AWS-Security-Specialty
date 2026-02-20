@@ -622,7 +622,7 @@ There is an EC2 with Application security group with rules below
 | TCP | 8080 | ALB SG |
 
 **Security Group Outbound**
-| Protocol| Port | Source |
+| Protocol | Port | Source |
 |---|---|---|
 | none | none | none |
 
@@ -631,13 +631,41 @@ If we want to dive deeper in to the EC2 instance then you need to put it in a co
 For this containment SG you can have the following:
 
 **Security Group Inbound**
-| Protocol| Port | Source |
+| Protocol | Port | Source |
 |---|---|---|
 | none | none | none |
 
 **Security Group Outbound**
-| Protocol| Port | Source |
+| Protocol | Port | Source |
 |---|---|---|
 | none | none | none |
 
-Through the dashboard or through th 
+Through the dashboard or CLI you need to make sure to detach SG from EC2 instance
+
+Net effect: EC2 instance isolate from network
+
+### Recover Safely
+
+Restore capacity while retaining forensic data
+
+EC2 is put into containment SG
+
+Leave isolated resources in place for analysis
+
+AMI of EC2 instance gets used to build EC2 in the same Application Security Group and have capability recovered
+
+Restore capacity while retaining forensic data 
+
+Data points go into a bucket
+
+Persist all logs and data points in durable storage for post mortem analysis
+
+Post mortem and feedback loop 
+
+A bucket containing Forensic data send the data to Redshift queries and sent to Insights and recommendations as if it were part of PostGRE database
+
+A bucket containing forensic data can send its log to Athena queries
+
+We could perform jobs that require code to be executed using Glue Jobs
+
+We could use QuickSight dashboard 
