@@ -608,3 +608,13 @@ Amazon GuardDuty feed into its self and based on if there is an IAM role, into C
 
 Cloudtrail if IAM role is implemented it feeds into CloudWatch Logs to store the Security Logs
 
+### Mitigate the event
+
+Contain the compromised resource
+
+**Security Group inbound**
+| Protocol| Port | Source |
+|---|---|---|
+| ICMP | ALL | VPC CIDR |
+| TCP | 22 | Bastion SG |
+| TCP | 8080 | ALB SG |
