@@ -612,9 +612,32 @@ Cloudtrail if IAM role is implemented it feeds into CloudWatch Logs to store the
 
 Contain the compromised resource
 
+There is an EC2 with Application security group with rules below
+
 **Security Group inbound**
 | Protocol| Port | Source |
 |---|---|---|
 | ICMP | ALL | VPC CIDR |
 | TCP | 22 | Bastion SG |
 | TCP | 8080 | ALB SG |
+
+**Security Group Outbound**
+| Protocol| Port | Source |
+|---|---|---|
+| none | none | none |
+
+If we want to dive deeper in to the EC2 instance then you need to put it in a containment SG (Security Group)
+
+For this containment SG you can have the following:
+
+**Security Group Inbound**
+| Protocol| Port | Source |
+|---|---|---|
+| none | none | none |
+
+**Security Group Outbound**
+| Protocol| Port | Source |
+|---|---|---|
+| none | none | none |
+
+Through the dashboard or through th 
