@@ -49,8 +49,6 @@ Evaluate exposed access keys
 - 2.7 Case Study: Compromised EC2
 - 2.8 Question Breakdown
 
-
-
 ## 2.2 Incident Response Basics
 
 - Everyone should know incident response, but an **incident response plan** as a general security concept is going to be reviewed
@@ -64,7 +62,6 @@ Incident response plan:
 3. Containment, Eradication, & Recovery
 
 4. Post-Incident Activity
-
 
 **Continue of already collected notes**
 
@@ -122,7 +119,6 @@ Second step in incident response plan.
 - Correlate events between logs and metrics
     - Amazon ElasticSearch & Kibana
     - CloudWatch Logs Insights
-    - 
 
 ### Incident Notification
 
@@ -668,4 +664,71 @@ A bucket containing forensic data can send its log to Athena queries
 
 We could perform jobs that require code to be executed using Glue Jobs
 
-We could use QuickSight dashboard 
+We could use QuickSight dashboard to be able to explore this data in a database
+
+Now our final step is to take our recommendations and turn those into action and so what kind of actions might we expect to see that we can turn into preparation to improve our security
+
+How about more restrictive security group rules if we find that an old rule was left in place and that is what our attacker used to get in
+
+#### Turn recommendations into action
+
+Better monitoring, active responses
+Look into different metrics having more alarms so we are not reacting when the event occurs
+
+## 4.4 Log Processing
+
+There are so many ways to process logs in AWS,
+I've choosen examples that are common enough that they may actually show up on the certification exam but this is by no means an exhausted list
+
+### Amazon Kinesis Data Stream
+
+Amazon Kinesis Data Stream does require that you have one or more producers that are generating log based data and these are placed into the data stream using a push mechanism from the producers
+
+Then pulled from the stream using consumers running some sort of code and a Kinesis Client Library 
+
+### Amazon Kinesis Firehose/Analytics
+Similar to the Kinesis data stream is Kinesis Fire hose.
+
+With Kinesis Firehose, you have multiple options for analyzing or modifying the data while it is in the service
+
+Kinesis Analytics tool gives you the ability to execute SQL queries on the information as it passes through the fire hose
+
+If you have the ability to actually transform the records using a Firehose source record transformation that can be used to execute a lambda function now that you have multiple options for destinations for your Kinesis Firehose.
+
+You can place those records directly into S3, you can insery them into a RedShift database
+
+You can place them into an ElasticSearch Instance
+
+Or through that source record transformation you could actually place those records in an outside service such as Splunk
+
+### AWS Athena
+
+Now assume your data is already in storage and you would like to perform some kind of operations or analysis upon it
+
+AWS Athena gives you the ability to query data that is rest in an S3 bucket 
+
+### Amazon RedShift Spectrum
+
+Amazon Redshift Spectrum gives you a similar ability but using the Redshift service
+
+### AWS Glue
+
+Works on multiple data sources that might be in one or more accounts and give you the ability to perform ETL jobs and other analytics
+
+You create a data catalog that you can then use for performing other queires or gaining insights
+
+### EMR - Elastic Map Reduce
+
+One of the most common services that you should have in your toolkit for performing analytics on large data sets
+
+It is a managed service for Hadoop and it can use an S3 bucket as a source for a data and simply place the data in the same or another S3 bucket when you're done with it
+
+### Amazon ElasticSearch and Kibana
+
+ElasticSearch is another really cool solution because it gives you the opportunity to front it with a Kibana dashboard 
+
+There are some built-in integration points with the rest of AWS including Kinesis Firehose and CloudWatch Log Group and these can be placed directly into an elastic search instance and then queried directly from that 
+
+- Kinesis Firehose
+
+- CloudWatch Logs
