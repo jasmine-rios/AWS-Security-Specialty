@@ -776,6 +776,18 @@ Now we create a subscription filter using IAM role ARN created in previous step 
 Bonus round: 
 Use Kinesis Analytics for executing SQL queries on log stream for analysis or filtering
 
-### Implement Automated Log Expiration
+#### Implement Automated Log Expiration
 
+For the second half of our scenario we need to implement automated log expiration on any CloudWatch Log group whenever it is created.
 
+We will use CloudWatch Events, AWS Lambda, and CloudWatch Logs 
+
+Start with permissions; Create IAM role with trust policy allowing use by AWS Lambda
+
+Associate IAM role with permissions policy allowing modify privileges to CloudWatch Logs
+
+Next, we will create Lambda function that sets expiration days on log group passed as a parameter
+
+Create Events rule that matches new CloudWatch Logs group creation
+
+# Module 4: Infrastructure Security
