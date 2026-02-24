@@ -727,8 +727,55 @@ It is a managed service for Hadoop and it can use an S3 bucket as a source for a
 
 ElasticSearch is another really cool solution because it gives you the opportunity to front it with a Kibana dashboard 
 
-There are some built-in integration points with the rest of AWS including Kinesis Firehose and CloudWatch Log Group and these can be placed directly into an elastic search instance and then queried directly from that 
+There are some built-in integration points with the rest of AWS including Kinesis Firehose and CloudWatch Log Group and these can be placed directly into an elastic search instance and then queried directly from that Kibana dashboard using a broswer
 
-- Kinesis Firehose
+### CloudWatch Logs Insights
 
-- CloudWatch Logs
+- AWS CloudWatch logs insights gives you anyoher way for querying your data where it sits currently in a service like CloudWatch Logs and because you can place your data in CloudWatch logs from a number of other services in AWS or from custom applications 
+
+This could be a one-stop-shop for analyzing all of your log data and you have the benefit of direct integration to create Cloud Watch Alarms where you can then take direct action or send notifications
+
+### AWS Lambda
+
+Swiss-army knife for analytics and because it has direct integration with services like Kinesis Firehose using the source record transformation
+
+You can use S3 event notifications or even execute the Lambda function directly from Custom code and scripts
+
+This gives you the ability to perform any kind of arbitrary analytics that might not be perfectly suited to another service
+
+## 4.5 Case Study: Automated Log Management
+
+You will find out you have requirements of storage of the logs and for expiration of those logs
+
+### Case Study: Automated Log Management
+
+Scenario: New monitoring requirements to persist all logs in S3 and expire all entries in CloudWatch log groups after 365 days
+
+How can you:
+    1. Transfer logs from CloudWatch Logs to S3?
+    2. Implement automated log expiration across all log groups?
+
+#### Transfer Logs to S3
+
+CloudWatch Logs is going to use Kinesis Firehose to put the logs into a S3 bucket.
+
+Integration between services require permissions and configuration
+
+You will create an IAM role with trust policy allowing use by Kinesis Firehose
+
+Associate IAM role with permissions policy allowing write access to S3 bucket
+
+Now we move on to the configuration portion where ypi will create firehose delivery stream using IAM role ARN from previous step and S3 bucket ARN
+
+For the next step, we are going to create an IAM role with trust policy allowing use by CloudWatch Logs
+
+Associate IAM Role with permissions policy allowing access to Kinesis Firehose
+
+Now we create a subscription filter using IAM role ARN created in previous step and delivery stream ARN (Requires CLI)
+
+Bonus round: 
+Use Kinesis Analytics for executing SQL queries on log stream for analysis or filtering
+
+### Implement Automated Log Expiration
+
+
