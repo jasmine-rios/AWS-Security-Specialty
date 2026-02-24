@@ -791,3 +791,86 @@ Next, we will create Lambda function that sets expiration days on log group pass
 Create Events rule that matches new CloudWatch Logs group creation
 
 # Module 4: Infrastructure Security
+
+## 5.1 Edge Security
+
+1. Design edge security on AWS
+2. Design and implement a secure network infrastructure
+
+### Edge security - Ingress Points
+
+- CloudFront
+- S3
+- API Gateway
+- Elastic Load Balancer
+- AWS Service API endpoints
+- VPC Ingress (next section)
+
+Cloudfront when you cache assets, they will be stored in edge locations
+
+Lambda @ Edge for logic evaluation
+
+You can put a WAF for traffic filtering rules
+
+Once it has gone through the global scope, it is not regional service scope
+
+You can use S3 bucket for static assets
+
+You can allow access to your objects by using an API Gateway for Restful interfaces
+
+You can use the Elastic Load Balancer for traffic distribution
+
+AWS service API endpoints are hosted at regional service scope
+
+## 5.2 VPC Network Security
+
+### Network Security - Single VPC
+
+- Subnet
+- NACL
+- Route Table
+- Security Group
+
+#### Single VPC - Subnet
+
+- Isolate workloads
+- Apply NACL and route tables
+- Finer granularity for CIDR related security features
+- Monitor with VPC Flow Logs
+
+#### Single VPC - NACL
+
+- Deny outbound traffic to unauthorized internet destinations
+- Enforce compliance for application tier traffic
+- Reject inbound traffic to database subnets from non-application sources
+- Prevent compromised instance from exploring the network
+
+#### Single VPC - Route Table
+
+- Enable Internet accessibility
+- Limit outbound access to specific CIDR range - even /32
+- Allow least-privilege access to on-premises networks
+- Enable traffic flow to authorized endpoints
+
+#### Single VPC - Security Group
+
+- Implement least privilege by whitelisting appropriate external sources
+- Allow inbound traffic only from specific upstream sources (like ALB)
+- Remove default outbound rule for apps that should never initiate outbound traffic
+- Limit access to endpoints by rules based on subnet CIDR or security group membership
+
+## 5.3 VPC Egress Security
+
+### Network Security - VPC Egress
+
+- Internet Gateway
+- Virtual Private Gateway
+- VPC Peering Connection
+- Gateway endpoint
+- Interface Endpoint (PrivateLink)
+- NAT Gateway
+- DiY
+
+#### VPC Egress - Internet Gateway
+
+- Enable Internet access with no blacklist capability
