@@ -998,3 +998,56 @@ How do we perform a deployment with no network access to HIPAA workload?
 - Push deployment artifact (container image) to ECR
 - Create task definition in ECS, deploying new service
 - Add listener rule to ALB to point traffic to new ECS service
+
+## Lesson 6: Infrastructure Security
+
+## 6.1 Network Troublshooting
+
+### Network Troublshooting Scenarios
+
+Scenario 1: Traffic rejected between A and B
+possible locations of A and B
+- Located in the same VPCs
+- Located in different VPCs
+- Located in a private data center
+
+#### Scenario 1 Possible Causes
+
+- Route table entries (with correct target)
+- NACL rules (inbound/outbound)
+- Security group rules (inbound/outbound)
+- Physical data center firewall
+- Host-based firewall
+- VPC DIY firewall
+
+- Route table misconfiguration if in different VPCs
+
+## 6.2 Host-Based Security
+
+### Limiting Exploits in EC2
+
+Use AMI from trusted source
+
+Implement additional security
+    - OS Firewall
+    - Disable unneeded services
+    - Remove insecure packages
+    - AWS monitoring
+    - Third-party monitoring
+    - Restrict user access
+    - Immutable OS
+
+### Automating OS Security
+
+Use Amazon Inspector
+    - Install Inspector Agent
+    - Create SNS topic
+    - Configure assessment template
+    - Schedule assessment runs
+    - Execute assessment
+
+Automatically remediate findings:
+    - Finding posted to SNS
+    - Lambda parses finding
+    - Lambda invokes SSM Run Command
+
