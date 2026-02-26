@@ -986,3 +986,15 @@ How can you:
 How do we access Jenkins?
 How does Jenkins access source code?
 
+We are going to force all traffic from Jenkins VM through VPN to where the remote git repo is.
+
+This will allow Jenkins to extract source code straight out of the repo this same connection can also be used for allowing access to Jenkins via CLI or web browser.
+
+How do we perform a deployment with no network access to HIPAA workload?
+
+#### Deploy updates to Application Infrastructure
+
+- Use NAT GW for outbound access to AWS endpoints
+- Push deployment artifact (container image) to ECR
+- Create task definition in ECS, deploying new service
+- Add listener rule to ALB to point traffic to new ECS service
