@@ -1050,4 +1050,21 @@ Automatically remediate findings:
     - Finding posted to SNS
     - Lambda parses finding
     - Lambda invokes SSM Run Command
+    - Run Command installs patch on EC2 instance
+
+### Security via Immutable OS
+
+Auto Scaling with AMI
+
+Updates through replacement required
+
+Elastic Beanstalk with AMI
+
+Updates through replacement optional 
+
+You could use ECS on Fargate
+    - No access to OS
+
+You could do a Lambda Function
+    - No access to OS
 
