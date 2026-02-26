@@ -874,3 +874,115 @@ AWS service API endpoints are hosted at regional service scope
 #### VPC Egress - Internet Gateway
 
 - Enable Internet access with no blacklist capability
+- Use more specific route tables entries to limit outbound access
+- If internet access not required, least privilege dictates avoiding use of IGW
+- Used by both VPN and Direct Connect
+- Can be used to route traffic to and between multiple customer networks (VPN CloudHub)
+- No native features for blacklisting traffic
+- Private network link between two VPCs
+- Requires route table entries, use specific CIDR for least privilege
+- Restrict traffic with security groups and NACL
+
+#### VPC Egress - Gateway Endpoint
+
+- Only used for access to DynamoDB and S3 (12/2018)
+- Traffic that passes this endpoint is not charged
+- The services you access, the DyanmoDB tables and S3 buckets must be present in the same region as the VPC where this gateway endpoint is configured
+- Keep traffic private by avoiding public AWS network
+- Apply resource-level permissions on all requests
+
+#### VPC Egress - Interface Endpoint
+
+- Access other service API, API Gateway, and Marketplace products (charged service)
+- Keep traffic private by avoiding public AWS network
+- No public IP addresses required
+- Can access cross-region resources, cross-account resources, and even resources hosted by other customers
+
+#### VPC Egress - NAT Gateway
+
+- Only outbound access allowed
+- Apply NACL for least privilege
+- Apply specific route table entries for least privilege
+
+#### VPC Egress - DiY
+
+- Use for inline IDS/IPS and DLP
+- Full control over resource, can install by hand or use MarketPlace products
+- Can act as router, proxy, or security appliance
+
+## 5.4 Multiple VPC Strategies
+
+### Network Security - Multiple VPC
+
+- Same region
+- different account
+- Different region
+- Transit gateway
+
+#### Multiple VPC - Transit Gateway
+
+Manage network interconnectivity through attachments and route tables
+
+#### Mutliple VPC - Considerations
+
+- More security groups
+- More NACL
+- More route tables (use Transit Gateway)
+- More routes
+- More egress points
+- Higher operational overhead
+
+## 5.5 Case Study
+
+Scanrio: Design a secure infrastructure with multiple networks for hosting and operations
+How can you:
+
+1. Design an application/network infrastructure for HIPAA compliant workloads
+2. Design a DevOps infrastructure for shared use
+3. Utilize AWS services to eliminate traffic between the two networks
+
+### Securing PHI through Network Design
+
+- Create subnets according to Internet accessibility
+    - Direct Internet Access
+    - Indirect Internet Access
+    - No Internet Access
+
+- Different route tables for each subnet
+    - 0.0.0.0/0 routed in IGW for direct internet access subnet. Traffic will be forwarded with internet gateway subnet
+    - 0.0.0.0/0 routed to NAT GW per subnet for indirect interney access subnet
+    - No route for 0.0.0.0 for No Internet access subnet
+
+- Ensures compliance through NACLs
+    - Reject outbound to VPC-only subnets for direct internet access
+    - Reject all non-application traffic in/out for indirect internet access
+    - Accept inbound to DB from app only for No internet access subnet
+
+### Securing PHI via Application Infrastructure
+
+- Only managed services in public subnets
+    - Use ALB with WAF ACL on front end
+
+- Only temporary resources for application hosting
+    - Use ECS/Fargate on indirect internet access
+
+- On the backend, data persisted using synchronous replication
+    - Use RDS/Aurora
+
+### Securing PHI via Security Groups
+
+- Front-end subnet
+    - Inbound 443 Outbound 8080 to app
+
+- Middle-end subnet
+    - Inbound 8080 Outbound 3306 to DB
+
+- Back-end subnet
+    - Inbound 3306
+    - No outbound
+
+### Create a multi-purpose DevOps Infrastructure 
+
+How do we access Jenkins?
+How does Jenkins access source code?
+
