@@ -1231,5 +1231,35 @@ Principal
     IAM role
     Specific assumed-role user
     AWS service
+    Everyone (Anonymouse users)
 
+## 7.3 IAM Policy Conditions
 
+### IAM Policy Reference
+
+notPrincipal
+    Same concept as Principal
+    Use for exceptions
+    Easier than defining a long list
+    Avoid using this with Allow statements
+    Use with Deny to implement least privilege policies
+
+Action
+    Specific action or actions that can be allowed and denied
+    Each service has different actions
+    Combine actions from multiple services
+    Options:
+    Everything in AWS
+    Everything in a single service
+    Named actions in multiple services
+    Wildcards using *
+
+notActions
+    Same concept as action
+    Use for exceptions
+    Easier than defining a long list
+    Use with Allow statements for allowing all except specific actions
+    Use with Deny statements for shorter least-privilege policies
+
+Resource
+    Obkect or objects that are covered by this statement
