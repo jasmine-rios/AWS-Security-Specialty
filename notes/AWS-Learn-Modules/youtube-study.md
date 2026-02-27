@@ -1262,4 +1262,26 @@ notActions
     Use with Deny statements for shorter least-privilege policies
 
 Resource
-    Obkect or objects that are covered by this statement
+    Object or objects that are covered by this statement
+    Always specified using ARN
+    Options:
+    All resources
+    Specific resource
+    Not all services support resources
+
+notResource
+    Same concept as resource
+    Use for exceptions
+    Easier than defining a long list
+    Use carefully
+    Can grant or deny access in an unintentional manner
+
+Condition
+    Specify conditions for when a policy is in effect
+    Condition key names are case specific
+    Some conditions are service specific
+    String condition:
+        Exact match
+        Partial match
+        Negated match
+        
