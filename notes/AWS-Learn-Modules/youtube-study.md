@@ -1068,3 +1068,168 @@ You could use ECS on Fargate
 You could do a Lambda Function
     - No access to OS
 
+## 6.3 Case Study: The Golden AMI Pipeline
+
+Scenario: Design an automation pipeline for creation of golden AMIs
+
+How can you: 
+
+1. Set up the pipeline infrastructure
+2. Share the approved AMIs with organization
+3. Deploy updated AMIs into existing stacks
+
+### Golden AMI Pipeline Infrastructure
+
+- Launch EC2 instance from base AMI
+- User data script performs basic validation
+- Execute patch installs and library updates via SSM Run Command
+- Execute OS hardening tasks via SSM run Command
+- Stop instance
+- Create new AMI of this instance
+- Tag AMI (date, patch, levels via CloudWatch Events)
+- Launch new instance from AMI via Cloudwatch Events and Lamdba
+- Install inspector agent and perform assessment via SSM run command
+- All of the findings posted to SNS topic and sent to approver 
+- Approve or reject proposed golden AMI
+- Approved AMI tagged as ready to distrubute
+
+### Share AMI Across Organization
+
+- New Golden AMI generates CloudWatch Event 
+- Lambda Function shares AMI with all other accounts in AWS organization
+- Event rule forwards event to other account event buses
+
+### Deploy Updated AMI
+
+- Inbound AMI update event captured by CloudWatch Events rule
+
+- Lambda function target deploys updates according to infrastructure
+
+### Deploy updated AMI via Auto Scaling
+
+- Update existing CloudFormation stack with new parameter for updated AMI
+
+- Auto Scaling group deploys rolling updates to replace fleet
+
+### Deploy Updated AMI via Elastic Beanstalk
+
+- Clone existing Elastic Beanstalk app with new AMI
+
+- Modify Route 53 zone entry 
+
+# Module 7: Identity and Access Management
+
+## 7.1 AWS Credentials
+
+### Question Domain Main Points
+
+1. Design and implement a scalable authorization and authentication system to access AWS resources
+2. Troubleshoot an authorization and authentication system to access AWS resources
+
+### Definitions and Keywords
+
+Authentication
+- Proof of identity
+- User/pass
+- keys
+- MFA
+- Federation
+
+Authorization
+- Permissions for actions
+- User-access control
+- Resource-based access control
+- Implicit deny - **IMPORTANT**
+
+Everything in AWS is 100% API-driven
+
+### How to Access AWS - Direct
+
+- HTTP/HTTPS Custom 
+- CLI
+- SDK
+- AWS Console
+
+- HTTP/HTTPS custom communicates with Service API Endpoint using API keys but the signature is manual; you will have to generate the signature by code which could be a little bit of work
+
+- CLI communicates with Service API Endpoint using API keys but your requests are automatically signed as part of the CLI libraries
+
+- SDK follows the same ^^; Only difference is matter of preference by customer
+
+- AWS Console communicates with Service API Endpoint using User/Pass and requests are automatically signed.
+
+### Benefits of Signed Requests
+
+1. Authentication - proven identity
+2. Avoid tampering (MitM)
+3. Avoid replays (wireshark/tcpdump)
+
+### How to Access AWS - Indirect
+
+Cross-service API calls
+
+Assume an IAM Role via STS (Security Token Service)
+
+SAML Federation
+
+Email address for Authentication
+    QuickSight and Cognito uses this
+
+AWS Directory Service for Authentication
+    Works for Workspaces, WorkDocs, WorkMail, AWS SSO
+
+## 7.2 IAM Policy Details
+
+### Anatomy of an IAM Policy
+
+Version
+Id
+Statement
+Sid
+Effect
+Principal
+NotPrincipal
+Action
+NotAction
+Resource
+NotResource
+Condition
+
+### IAM Policy Reference
+
+Version
+    Policy language version, and should be static
+    Default 2012-10-17
+
+Id
+    Optional identifer for the policy
+    Only required by some services
+    Recommended value: UUID
+
+Statement
+    Main policy element
+    All the logic is placed here
+    All other values are placed here
+
+Sid
+    Optional identifer for the statement
+    Only required by some services
+    Not directly exposed in the IAM API
+
+Effect
+    Determines whether the policy results in an explicit allow or explicit deny
+    Required element
+    Valid values: Allow and Deny
+
+Principal
+    The entity that is allowed or denied access to the resource
+    Can be:
+    1 or mote specific AWS accounts
+    1 or more IAM users
+    Federated users (web identity)
+    Federated user (SAML)
+    IAM role
+    Specific assumed-role user
+    AWS service
+
+
