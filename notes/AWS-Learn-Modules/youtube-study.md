@@ -1490,3 +1490,157 @@ log-delivery-write (use for access logging)
 - Cross-account invocation permissions require alias name
 - Permissions can restrict function version
 - Lambda layers can be shared
+
+## 8.8 Troublshooting Permissions
+
+### Troubleshooting - Scenarios
+
+- User cannot perform action X
+    - Scenario details
+    - conditions
+
+- Application cannot contact service Y
+    - Credential and environment details
+
+- Permissions seem to be granted but don't work
+
+### Troubelshooting - Root Causes
+
+- Understand the order of evaluation for actions
+- Learn where deny statements override
+    - All it takes is one!
+- Know which services have resource-level access control
+- Memorize conditions options
+- Learn how permissions boundaries work
+    - Allowed by policy, but not within boundaries
+    - Organization SCPs are similar
+- Limits on API endpoints
+    - Request must be within 5 mins of true time
+    - Too many requests = throttling
+
+### Troublshooting - Tools
+
+- Cloud trail
+
+- Access Advisor reports
+
+- CloudWatch Logs Insights
+
+- VPC flow logs
+
+- Kibanna and AWS ElasticSearch
+
+- Command-line error output
+    - Learn about error codes
+
+# Module 6: Data Protection
+
+# Lesson 9 Key Management
+
+## 9.1 Symmetric Data Encryption
+
+### Symmetric Data Encryption in AWS
+
+1. Application/service requests new data encryption key from key management infrastructure
+
+2. Key management infrastructure returns plaintext encryption key and encryption key encrypted by master key
+
+3. Application uses plaintext key to encrypt data object (AES256) 
+
+4. Application puts encrypted data in storage, attaching encrypted data key as metadata
+
+### Symmetric Data Decryption in AWS
+
+1. Application requests encrypted data key from storage
+
+2. Application sends encrypted data key to key management infrastructure
+
+3. Key management infrastructure returns plaintext data key to application
+
+### Symmetric Data Encryption Considerations
+
+What keys are involved?
+- Root CA
+- Master key
+- Data encryption key
+
+Who owns the keys?
+- AWS
+- Customer
+- 3rd party
+
+Where is the encryption performed?
+- Server/service
+- Client
+
+How is the key access control is implemented?
+- User-based
+- Resource-based
+
+### Key Management Services
+
+- KMS
+- CloudHSM
+- AWS Certificate Manager
+- EC2 Marketplace
+- DIY
+
+## 9.2 AWS KMS Basics
+
+##3 AWS KMS Basics
+
+- Key Management Service
+- Region scoped
+- Multi-tenant service
+- Generate/store master keys
+- Upload master keys
+- Generate data keys
+- Does not encrypt data
+- KMS Custom Key Store Available
+    - CloudHSM-backed CMK
+    - Stores CMK using single-tenacy
+- FIPS 140-2 validated 
+
+### AWS KMS CMK Operations
+
+- Create backing key in KMS
+- Upload backing key 
+- Rotate backing keys on demand
+- Rotate backing keys on schedule
+
+### AWS KMS CMK Key Rotation
+
+- Create new backing key
+- The old backing key still used for decrypting old objects
+- Still used for decrypting previous data keys
+- Can be deleted if compromised suspected
+- The newest backing key is used for encrypting/decrypting data keys from the time of rotation
+
+### AWS KMS CMK Alias Basics
+
+- CMK aliases are used when you have an application and would like to hardcode the Amazon resource name for the customer master key and not worry which backing key material is currently being used, you can do this with Aliases.
+
+Aliases can point to the master key 
+
+What if we have suspected key compromise but need application to keep functioning?
+
+1. Create a new CMK
+2. Configure CMK 2 access control to match CMK 1
+3. Update alias to point to CMK 2
+4. Update CMK 1 access control to disable application access
+
+## 9.3 AWS KMS Access Control
+
+### KMS Access Control - IAM
+
+User-based access control using IAM policies and granting access to the KMS service for this mechanisim
+
+- Apporitate for general access to KMS:
+    - Create CMKs
+    - Audit Usage
+    - Inventory CMKs
+
+### KMS CMK Access Control - Choices
+
+1. Key Policy
+2. IAM in combination with key policy
