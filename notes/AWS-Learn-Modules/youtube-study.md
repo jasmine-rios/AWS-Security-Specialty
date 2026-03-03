@@ -1331,3 +1331,68 @@ Condition
     - Create as part of wizard
     - Create manually (or programmatically)
 - Cannot attach permissions policy to any other entity
+
+# Lesson 8: Federation and Resource-Based Access Control
+
+## 8.1 SAML Federation
+
+### Federation - SAML 2.0
+
+1. Authenticate against local IDP
+
+2. IDP returns SAML assertion
+
+3. Client calls STS: AssumeRolewithSAML. Will have to provide ARN of SAML provider, ARN of IAM Role, and SAML assertion
+
+4. STS returns credentials
+
+5. Use credentials to access AWS services
+
+## 8.2 Cognito User Pool Federation
+
+### Federation - Cognito User Pools
+
+1. Client sends credentials appropriate for provider (It can be cognitio, SAML, Web Identity provider, and OIDC) 
+
+2. Cognito peforms authentication against provider and manages user directory profile
+
+3. Cognito accepts tokens from IDP
+
+4. Cognito returns user pool tokens to client
+
+5. Client uses user pool tokens to access: Server Resources, API Gateway Endpoints, trade for AWS credentials
+
+### Federation - Cognito Identity Pools
+
+1. Client authenticates to IdP (it can be cognito user pool, SAML, Web Identity Providers, and OIDC) If you already authenticated against Cognito User Pool then you already have the token.
+
+2. IdP returns user tokens
+
+3. Client sends user tokens to Cognito via GetCredentialsForIdentity method
+
+4. Cognito calls STS on behalf of client, with predefined policy document
+
+5. STS returns AWS credentials to Cognito
+
+6. Cognito returns credentials to client
+
+7. Client uses credentials to access AWS services
+
+## 8.4 AWS SSO Federation
+
+### Federation - AWS Single Sign-On (SSO)
+
+1. Log into AWS SSO console
+
+2. Options to accept the authentication method:
+    a. Request user log into AWS SSO native directory
+    b. AWS Managed Microsoft AD (Also optional 2-way trust to external AD)
+    c. AD Connector (This is proxy that forwards any active directory requests across either a Virtual Private Gateway connection or direct connect); Request forwarded to external AD
+
+3. Once you have authenticated, you can use this authentication to then reach out and use other service such as:
+    a. other accounts in AWS Organization (gives console access or CLI/SDK creds with 1 hr expiration)
+    b. Take advantage of third-party services like Adobe CC, Office 365, and others.
+    c. Grant access to Custom SAML app
+
+## 8.5 AWS Organization
+
