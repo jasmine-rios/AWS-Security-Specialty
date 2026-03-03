@@ -1642,5 +1642,158 @@ User-based access control using IAM policies and granting access to the KMS serv
 
 ### KMS CMK Access Control - Choices
 
-1. Key Policy
+1. Key Policy (required)
 2. IAM in combination with key policy
+3. Grants in combination with key policy
+
+### KMS Access Control - Key Policy
+
+Key Administrators:
+    - Create/delete key material
+    - Create/revoke grants
+    - Describe key metadata
+    - Delete key
+
+Key users:
+    - Encrypt
+    - Decrypt
+    - Re-encrypt
+    - Create data key
+    - Describe data key
+    - delegate permssions using key grants
+
+### KMS Access Controls - Grants
+
+- Delegate temporary permissions
+- Allow only, no deny
+- Not recommended for key management
+- Revoke at any time
+
+Delegating
+- New grant with CreateGrant permission
+- New grant with subset of original grant permissions
+
+## 9.4 AWS CloudHSM
+
+### AWS CloudHSM Basics
+
+- Current (v2)
+    - Dedicated generic HSM
+- CloudHSM Classic
+    - SafeNet technology
+- AZ scoped
+- Single tenancy
+- FIPS 140-2 Validated
+
+### AWS CloudHSM Tasks
+
+- Generate/store master keys
+- Generate/store data keys
+- Can encrypt data (bullk crypto)
+
+### AWS CloudHSM Niches
+
+- TDE for RDS Microsoft SQL server
+- TDE for RDS Oracle Server
+- High-performance bulk crpyto
+- PKI (Public Key Infrastructure)
+- Redshift database encryption with full chain of trust ownership
+
+### AWS CloudHSM Considerations
+
+- CloudHSM Classic requires careful HA design
+- CLI only provides function for HSM management
+- Classic pricing uses different model than v2
+
+## 9.5 AWS Certificate Manger
+
+### AWS Certificate Manager Basics
+
+Used for generating assumetric data encrption certificates, specifically for web services
+
+- Region scoped
+- Multi-tenant
+- Private CA capability
+
+- Provision SSL/TLS certificates
+- Upload custom certificates
+- Managed certificate renewal
+- Use in AWS ecosystem only 
+
+### AWS Certificate Manager Integration
+
+- CloudFront
+- Elastic Load Balancer
+- API Gateway
+
+## 9.6 Using Keys for Authentication
+
+### EC2 Keypairs
+
+- Region-scoped resource
+- Create keypair entirely in AWS
+- Create keypair and upload into AWS
+- Linux - public key installed on instance
+- Windows - administrator password encrypted using public key
+
+### CodeCommit Keypair
+
+- Global resource stored in IAM
+- Create keypairs and upload into AWS
+- Only used for authenticating to CodeCommit repositories
+
+### AWS Secrets Manager
+
+- Part of AWS SSM
+- Store key/value pairs for custom applications
+- Store DB connection strings for authenticating to services like RDS
+
+### AWS Parameter Store
+
+- Part of AWS SSM
+- Stored structured text
+    - keypairs
+    - config files
+- Store unstructured text
+    - password
+    - serial number
+    - key
+
+## 9.7 Troubleshooting Key Management
+
+### Troublshooting Example 1
+
+Scenario: Service cannot access KMS for encrypting objects
+
+Possible causes: 
+
+1. Key policy modified
+2. Key grant revoked
+3. IAM policy modified
+
+Scenario: Service cannot access KMS for decrypting objects
+
+Possble causes:
+
+1. Key policy modified
+2. CMK backingkey deleted
+3. Key grant revoked
+4. IAM policy modified
+
+Scenario: Service cannot access CloudHSM for encryption or decryption
+
+Possible causes:
+
+1. Failed HSM appliance (CloudHSM classic)
+2. Change in security group rules
+3. HSM appliance is overloaded
+
+Scenario: Service cannot access secret for application authentication
+
+Possible causes:
+
+1. Secret was deleted
+2. Secret resource-based policy modified
+3. IAM policy modified
+
+## 9.8 Case Study: CloudWatch Logs Encryption
