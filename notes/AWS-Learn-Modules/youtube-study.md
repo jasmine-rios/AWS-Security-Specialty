@@ -1396,3 +1396,97 @@ Condition
 
 ## 8.5 AWS Organization
 
+### AWS Organizations
+
+- Resource being protected in the AWS account
+- Treats account like an OU in a directory
+- Creates accounts programmatically
+- Invite standalone accounts to join
+- SCP can blacklist or whitelist
+- Master account not affected by SCP
+
+## 8.6 S3 Access Control
+
+### S3 Bucket and Object ACLs
+
+- Primative
+- Pre-date IAM
+- XML (not JSON)
+- Grantee - AWS Account
+- Grantee - Predefined S3 Group
+
+### ACL Permissions
+
+Read
+    Bucket
+        - List Objects in the buckey
+    Object
+        - Read object data and metadata
+
+Write
+    Bucket
+        - Create, overwrite, or delete any object in the bucket
+    Object
+        - N/A
+
+READ_ACP
+    Bucket
+        - Read the bucket ACL
+    Object
+        - Read the object ACL
+
+WRITE_ACP
+    Bucket
+        - Write the bucket ACL
+    Object
+        - Write the object ACL
+
+FULL_CONTROL
+    Bucket
+        - Grant all other permissions on the bucket
+    Object
+        - Grant all other permissions on the object
+
+### Canned ACLs
+
+private (default)
+public-read
+public-read-write (not recommended)
+aws-exec-read (use for AMI bundle)
+authenticated-read
+bucket-owner-read
+bucket-owner-full-control
+log-delivery-write (use for access logging)
+
+### S3 Bucket Policies
+
+- 1 per bucket
+- same format as IAM policy
+- Only applies to the attached bucket
+    - still must define bucket in the resource section
+
+### S3 Block Public Access
+
+- Default on all buckets after Nov 15 2018
+- Scopes
+    - Account
+    - Bucket
+- Features
+    - Block at ACL level
+    - Block at bucket policy level
+
+## 8.7 API Gateway and Lambda Access Control
+
+### API Gateway Access Policy Principals
+
+- IAM users
+- Source IP address or CIDR
+- VPC ID
+- VPC Endpoints (cross-account possible)
+
+### Lambda Function Access Policies
+
+- Cross-service permissions can be created on the function itself or assigned via IAM role
+- Cross-account invocation permissions require alias name
+- Permissions can restrict function version
+- Lambda layers can be shared
