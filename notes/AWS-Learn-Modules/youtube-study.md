@@ -1797,3 +1797,124 @@ Possible causes:
 3. IAM policy modified
 
 ## 9.8 Case Study: CloudWatch Logs Encryption
+
+Scenario: Implement log encryption in CloudWatch using KMS
+
+How can you:
+
+1. Create the KMS CMK
+2. Configure SSE on CloudWatch log group
+3. Troubleshoot issues related to CMK permissions?
+
+### Create KMS CMK
+
+Steps:
+
+- Provide alias name
+    Be descriptive!
+
+- Provide description
+    Describe the data being protected
+
+- Add tags
+    Data classification
+    Application name
+    Cost center
+
+Disable key deletion by key admins
+    Good guidance!
+
+Copy the key ARN from the newly created CMK
+
+### Configure SSE on CloudWatch Log Group
+
+Identify CMK Key ID used in prior task
+
+Modify key policy
+    Add permissions for CloudWatch Logs
+    *logs.<region>.amazonaws.com*
+
+Create log group
+    specify --kms-key-id
+    requires CMK alias ARN
+    No console equivalent
+    CLI only
+
+### Troublshoot Issues
+
+Log group created and associated with CMK
+
+Logs are not encrypted
+
+Delete and re-create log group makes no difference
+
+Could permissions be the root cause?
+
+Viewing the key policy, we realize that CloudWatch Logs was authorized, but for the incorrect region
+
+By changing the region in the key policy, logs are now correctly encrypted
+
+# Lesson 10 Data Encryption At-rest and In Transit
+
+## 10.1 Data Encryption At-rest by Default
+
+### Data Encrypted at Rest by Default
+
+- Glacier
+
+- Snowball
+
+- CloudTrail
+
+- Storage Gateway
+
+- DynamoDB
+
+- ElasticSearch
+
+- FSx for Lustre
+
+- FSx for Windows
+
+## 10.2 Data Encryption At-rest as Option
+
+### Data Encrypted at Rest Optionally
+
+Filesystems and Object Storage:
+
+- EFS
+
+- EBS
+
+- S3
+
+Databases: 
+
+- RDS
+
+- Redshift
+
+- ElastiCache (Redis engine)
+
+- DocumentDB
+
+- Neptune
+
+Messaging:
+
+- SQS
+
+- SNS
+
+- Kinesis
+
+Other:
+
+- CloudWatch Logs
+
+- SSM Parameter Store
+
+- Secrets Manager
+
+## 10.3 Data Encryption At-Rest Operations
+
