@@ -1284,4 +1284,50 @@ Condition
         Exact match
         Partial match
         Negated match
-        
+    Numeric condtions:
+        Exact match
+        Negated match
+        Inequality
+    Date Condition
+        Exact date/time
+        Negated date/time
+        Before a specific date/time
+    Boolean Conditions
+        Evaluate statement as true or false
+        Another way to evaluate strings
+        One way to force SSL transport
+    Binary Condition
+        Test key values in binary format
+        Compare value to base-64 encoded binary value in policy
+    IP Address Conditions
+        Compare against IPv4 or IPv6
+        CIDR format required
+    ARN Conditions
+        Case sensitive match of any or all elements of ARN
+        Negated match of ARN
+        Not supported by all services
+    IfExists Condition
+        Add as postfix to other conditions
+        Checks if the key exists as part of another check
+    Null Check
+        Checks if the key exists as a standalone check
+## 7.5 Assuming IAM Roles
+
+### IAM Role for Cross Account
+
+- External ID
+    - Optional string supplied during role assumption
+    - Helps prevent unauthorized access through trusted account
+- Trust relationship is with entire remote account
+    - Not specific IAM resource
+    - Trusted account must own the further restriction of privileges
+
+### Service-linked IAM roles
+
+- Allow services to call each other
+- Predefined by service
+- Options (depends on service)
+    - Create automatically
+    - Create as part of wizard
+    - Create manually (or programmatically)
+- Cannot attach permissions policy to any other entity
