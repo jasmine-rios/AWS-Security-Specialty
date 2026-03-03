@@ -1918,3 +1918,83 @@ Other:
 
 ## 10.3 Data Encryption At-Rest Operations
 
+### Enable Encryption Upon Resource Creation
+
+Specify CMK at volume creation of EBS
+
+The EBS reaches out to KMS and request new volume encryption key
+
+KMS is going to return 2 elements with the response payload:
+
+- Plaintext volume encryption key
+- Encrypted volume key using the customer master key
+
+EBS will encrypted data at rest using the plaintext key
+
+It will store the encrypted volume key in the metadata for the volume
+
+When we attach the EBS to EC2 that will kick off more workflow
+
+Volume attachment passes encrypted volume key to EC2
+
+KMS creates a key grant for the EC2 instance
+
+The EC2 sends encrypted volume keys to KMS
+
+KMS sends plaintext key to EC2
+
+EC2 instance uses key to encrypt data in transit
+
+EBS volumes and AMIs are encrypted using volume key
+
+## 10.4 Data Encryption in Transit - Web
+
+### Data encrypted in Transit - Options
+
+Web traffic using TLS:
+
+- CloudFront
+
+- Elastic Load Balancer
+
+- API Gateway
+
+- S3 GET via HTTPS (custom domains not supported at this time)
+
+### Data Encryption in Transit - DB services
+
+Database Traffic Using TLS
+
+- RDS: Allows you to apply an SSL certificate so your database connections can be encrpyted in transit
+
+- Redshift: similar mechanism, instead of KMS, it uses CloudHSM 
+
+- Neptune: Supports encrypting your data in transit
+
+- ElasticCache: Does the same but only if you choose the Redis engine
+
+### Data Encrypted in Traffic - Storage Services
+
+Storage Traffic Encryption
+
+- FSx for Lustere 
+- FSx for Windows
+- EFS
+
+## 10.6 Data Encryption In Transit - Network
+
+### Data Encrypted in Transit - Options
+
+Network traffic using IPSEC
+
+- VPG with VPN
+
+- Direct Connect with VPN
+
+- DIY on EC2
+
+### Data encrypted in Transit - AWS API
+
+- All services support SSL/TLS
+- Can enforce via IAM policy conditions
+- Recognize where SSL impacts performance
