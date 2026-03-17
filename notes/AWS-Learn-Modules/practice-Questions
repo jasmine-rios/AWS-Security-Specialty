@@ -1,1 +1,13 @@
 # Practice Questions
+
+## Terms to study
+
+- GuardDuty Malware Protection
+- A company wants to centralize Amazon GuardDuty findings from multiple standalone AWS accounts into AWS Security Hub.
+  The company wants to use a designed security account.
+  Select and order each step:
+  Step 1: Enable Security Hub in the designated security account
+  Step 2: Configure the designated security account as the Security Hub administrator account
+  Step 3: Enable Security Hub and GuardDuty in each member account and create IAM roles that trust the Security Hub administrator account
+  Step 4: Configure the Security Hub administrator account to assume member account roles
+
