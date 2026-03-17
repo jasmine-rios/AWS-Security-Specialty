@@ -40,7 +40,7 @@
 
     Security Hub is a centralized security service that provides a comprehensive view of your security alerts and security posture across multiple AWS accounts. Security Hub integrates with various AWS services and third-party solutions to collect and aggregate security findings. You can use EventBridge to create rules that automatically invoke actions based on events from AWS services, including Security Hub findings.
 
-      Explanation: This solutions provides automated remediation workflows. You can use Automation runbooks to define and execute remediation actions across multiple AWS account by using Organizations. YOu can use Organizations to centrallly manage and apply policies and configurations across multiple AWS accounts. Therefore, Organizations is suitable for a multi-account setup. This solution uses AWS services that are specifically designed for integration. This solution eliminates the need for custom code maintenance or complex workflow management.
+      Explanation: This solutions provides automated remediation workflows. You can use Automation runbooks to define and execute remediation actions across multiple AWS account by using Organizations. You can use Organizations to centrallly manage and apply policies and configurations across multiple AWS accounts. Therefore, Organizations is suitable for a multi-account setup. This solution uses AWS services that are specifically designed for integration. This solution eliminates the need for custom code maintenance or complex workflow management.
 
 
   
