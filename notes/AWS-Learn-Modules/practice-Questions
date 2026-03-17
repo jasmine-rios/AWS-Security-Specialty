@@ -11,3 +11,37 @@
   Step 3: Enable Security Hub and GuardDuty in each member account and create IAM roles that trust the Security Hub administrator account
   Step 4: Configure the Security Hub administrator account to assume member account roles
 
+- Q: A company uses AWS Lambda extensively across multiple applications. 
+  Several Lambda functions that share the same prefix UpdProdCount access an Amazon DynamoDB table.
+  The company discovered that the data in the DynamoDB table changed unexpectedly. The company wants to generate a report that identifies how often and when these lambda functions are invoked.
+  Which solution will meet these requirements MOST flexibly?
+
+    A: Create a trail in AWS CloudTrail. Select the data events. Use advanced event selectors with Lambda as the data event type and custom as the log selector template to select the appropriate functions. Use Amazon Athena to generate a report by using CloudTrail log files.
+
+- Q: A security engineer is configuring an application that runs on an Amazon EC2 instance in a VPC in Account A. 
+  The EC2 instance runs in a private subnet without access to the internet. The EC2 instance has an associate role with permissions to perform the S3:ListObjectsV2 action on any resource.
+  
+  The application needs to access the contents of an Amazon S3 bucket that is placed in Account B. Both the application and the S3 bucket are in the same AWS Region. The contents of the bucket are confidential and should only be accessible from the application.
+
+  Which solution will meet these requirements?
+
+    A: Update the role associated to the EC2 instance to allow access to the S3 bucket contents. Add a resource policy to the S3 bucket that allows access from that role. Configure an S3 VPC gateway endpoint in Account A.
+
+      Explanation: S3 VPC endpoints provide secure access to Amazon S3 without the need for internet connectivity or additional costs. You can update the existing EC2 instance role to include specific permissions for the S3 bucket in Account B. You can configure the S3 bucket policy in Account B to explicitly allow access from the role in Account A. This solution maintains security through IAM controls.
+
+    Ref: https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html#types-of-vpc-endpoints-for-s3
+
+- Q: A company needs to implement automated security incident response across multiple AWS accounts in AWS Organizations. 
+  The solution must provide centralized security findings and automated remediation capabilities.
+  
+  Which solution will meet these requirements with the LEAST opearational overhead?
+    
+    A: Enable AWS Security Hub in the organization management account. Create Amazon Eventbridge rules to monitor security findings. Deploy AWS System Manager Automation runbooks for remediation. Use Organizations for multi-account aggregation and implement custom actions for specific security findings
+
+    Security Hub is a centralized security service that provides a comprehensive view of your security alerts and security posture across multiple AWS accounts. Security Hub integrates with various AWS services and third-party solutions to collect and aggregate security findings. You can use EventBridge to create rules that automatically invoke actions based on events from AWS services, including Security Hub findings.
+
+      Explanation: This solutions provides automated remediation workflows. You can use Automation runbooks to define and execute remediation actions across multiple AWS account by using Organizations. YOu can use Organizations to centrallly manage and apply policies and configurations across multiple AWS accounts. Therefore, Organizations is suitable for a multi-account setup. This solution uses AWS services that are specifically designed for integration. This solution eliminates the need for custom code maintenance or complex workflow management.
+
+
+  
+  
