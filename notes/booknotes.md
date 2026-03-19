@@ -498,4 +498,12 @@ There are stages to this:
 
 - Detective services can generate a large amount of information, and the security professional faces the challenge of extracting value from that information.
 
-- Third stage, *event analysis* 
+- Third stage, *event analysis*, where the raw records are processed to produce value-added information.
+  This analysis can be done in different ways.
+  For instance, it can compare the event with a best practice or a baseline and inform you when differences exist between the desired and the current situation.
+
+  - A service can also use statistics to determine whether the event is normal, or even leverage machine learning techniques to identify suspicious operations.
+
+  - At this stage, the service can also have a passive or active posture.
+
+  - In comparison, a passive posture characterizes an analysis based on the recieved observable records, while an active posture intentionally gathers additional information from the environment.
