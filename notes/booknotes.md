@@ -484,7 +484,12 @@ However, it is possible to define a trust policy
   - SaaS applications
   - AWS Cloud services
 
-There are stages to this:
+There are stages to incident response:
+
+1. Resources State
+2. Events Collection
+3. Event Analysis
+4. Action
 
 - First stage, the *resources state*
   Just like a tree falling in the middle of the forest, an event can happen at any time, and you need the right tools to record it as an observable record.
@@ -507,3 +512,19 @@ There are stages to this:
   - At this stage, the service can also have a passive or active posture.
 
   - In comparison, a passive posture characterizes an analysis based on the recieved observable records, while an active posture intentionally gathers additional information from the environment.
+
+  - The final result of the third stage is also a respository of observable records, but in this case, they are a direct result of an analytical process.
+
+  - AWS services can provide a user-friendly view of these observable records (both before and after the event analysis stage) Tools are available to manage those records, supporting a workflow to give the proper follow-up to security events
+
+  - Both the unfiltered observable records and the analyzed records respositories provide mechanisms for consuming them, in addition to visualizing or requesting the records via API calls.
+
+  - These mechanisms can be classified as batches or streams in light of how they grant access to the information.
+
+  - Processing as a batch means producing a historical view of the records that you can work on.
+
+  - Services can also provide access to observable records as a stream, which allows you to recieve the event as soon as it is reported.
+
+- Forth stage, is the *action* stage, you connect to the detection controls with reactive actions, through the **magic of automation in the cloud**.
+
+
