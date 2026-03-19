@@ -412,3 +412,7 @@ The regular permissions for a developer in the Dev account do not allow them to 
 
 However, it is possible to define a trust policy
 
+# Chapter 4 Objectives/Review
+
+- Principal: root users, IAM users, and IAM roles
+- 
