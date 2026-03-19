@@ -457,4 +457,20 @@ However, it is possible to define a trust policy
 
 - Automation allows you to evolve from being a mere viewer to a security enforcer.
 
-- 
+- Remediation controls are not in scope but important.
+
+- You will learn the basics about automated remediation capabilities of the detective controls. 
+
+- Blend these capabilities with the enlarged visibility the AWS Cloud provides and you will understand one of the main reasons multiple professionals acknowledge that they are more secure in the cloud
+
+- To explain the various detective controls, follow the framework below to see how incident response can be stagged
+
+**Insert diagram**
+
+- The framework is split into four main stages
+  - resource state
+  - events collection
+  - event analysis
+  - action
+
+- The flow starts with a collection of resources and the act of keeping track
