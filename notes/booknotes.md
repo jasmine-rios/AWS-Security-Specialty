@@ -482,3 +482,20 @@ However, it is possible to define a trust policy
   - Amazon API gateway
   - REST API on *Amazon API Gateway*
   - SaaS applications
+  - AWS Cloud services
+
+There are stages to this:
+
+- First stage, the *resources state*
+  Just like a tree falling in the middle of the forest, an event can happen at any time, and you need the right tools to record it as an observable record.
+
+- Secound stage, is *events collection*, deals with registering the events occuring in the environment.
+  The creation of these records can be passive or active.
+  A record is passively created when external sources are responsible for sending event notifications to the detective control.
+  By contrast, a record is actively created if the detective services intentionally looks for information.
+
+  There are AWS Cloud services that use both methods.
+
+- Detective services can generate a large amount of information, and the security professional faces the challenge of extracting value from that information.
+
+- Third stage, *event analysis* 
