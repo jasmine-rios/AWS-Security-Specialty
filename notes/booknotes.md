@@ -473,4 +473,12 @@ However, it is possible to define a trust policy
   - event analysis
   - action
 
-- The flow starts with a collection of resources and the act of keeping track
+- The flow starts with a collection of resources and the act of keeping track of your collection of resources and it's configuration and status over time 
+
+- These resources are the "objects" that are under observation.
+
+- They can be AWS resources such as
+  - Amazon EC2
+  - Amazon API gateway
+  - REST API on *Amazon API Gateway*
+  -
