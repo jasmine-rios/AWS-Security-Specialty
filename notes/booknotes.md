@@ -415,4 +415,46 @@ However, it is possible to define a trust policy
 # Chapter 4 Objectives/Review
 
 - Principal: root users, IAM users, and IAM roles
+- It is a good security principal to avoid creating an access key for programmatic access to your root user account unless such a procedure is mandatory
+- Remember to rotate your programmatic keys and access keys
+
+# Chapter 5: Security Logging and Monitoring
+
+## Objectives
+
+- Domain 1: Threat Detection and Incident Response
+  - 1.2 Detect security threats and anomalies by using AWS services
+
+- Domain 2: Security Logging and Monitoring
+  - 2.1 Design and implement monitoring and alerting to address security events
+  - 2.2 Troublshoot security monitoring and alerting
+  - 2.3 Design and implement a loggin solution
+  - 2.4 Troublshoot logging solutions
+  - 2.5 Design a log analysis solution
+
+- Domain 6:
+  - 6.3 Evaluate the compliance of AWS resources
+
+## Introduction
+
+- "IF a tree falls in the middle of the forest and nobody hears it does it make a sound."
+
+- Put your sensors in the right places as you cannot see inside a system
+
+- This practice is known as *observability*
+
+- These resources are not isolated, they interact with internal and external components and respond to those interactions therefore these resources are dynamic
+
+- In this chapter you will learn how to gather information about the status of your resources and most importantly the events related to them.
+
+- These events represent how the resources are being affected and how they are interacting with other resources, either internal or external to your organization.
+
+- Detecting, logging, monitoring, and presenting events in teh form of observable records is not the end of a process.
+
+- With AWS cloud, you have great capabilities, such as big data analysis and automation, that add great value to to extract findings out of hude amount of raw detected data
+
+- Deliver as processed events in the form of observable records
+
+- Automation allows you to evolve from being a mere viewer to a security enforcer.
+
 - 
