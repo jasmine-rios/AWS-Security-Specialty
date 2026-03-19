@@ -481,4 +481,4 @@ However, it is possible to define a trust policy
   - Amazon EC2
   - Amazon API gateway
   - REST API on *Amazon API Gateway*
-  -
+  - SaaS applications
