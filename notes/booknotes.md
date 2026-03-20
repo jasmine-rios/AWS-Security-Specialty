@@ -655,4 +655,37 @@ You can also use a SQL-like syntax to query information from the current configu
 
 The queries can be executed directly within the AWS Management Console or by calling the `SelectResourceConfig` API
 
+Moreover, AWS Config can provide a holistic picture of the current configuration: a configuration snapshot. 
+
+In practice, a configuration snapshot is a JSON file that contains the current configuration for all the monitored resources.
+
+The file is delivered into an Amazon S3 bucket you own
+
+You can manually create such a snapshot by calling the `DeliverConfigSnapshot` API at any time, or by scheduling a periodic delivery to occure every 1,3,6,12, or 24 hours.
+
+At this point, you have seen AWS Config recording static configurations; however, these resources are not static in nature.
+
+As they change their configuration over time, AWS Config (with its configuration recorder on) keep track of those changes.
+
+Not only that, but AWS Config allso correlates the changes in a resource with the events that produced it (for example, the API call that produced a change in the resource's configuration).
+
+AWS Config takes a "photo" of the new configuration each time a detected change happens and store that new configuration in conjuction with information about what caused the change.
+
+The sequence of "pictures" for a specific resource is known as a **resource timeline**
+
+Consequently, AWS Config keeps the observable records of events along with configuration items. The service acts in a passive way when resources inform AWS Config that a change occured, but it also acts in an active way because at that point, AWS Config calls the APIs to get informtaion abou the new status of the resource.
+
+In the AWS Config Console, you can access the current configuration of a monitored resource by accessing the resource view by doing
+
+**AWS Config > Resources > Name > Timeline**
+
+From there, Click the Resource timeline button, and the AWS Config Console will present you with a time-ordered list of recorded events that affected the resource, compose of configuration, compliance, and CloudTrail events (as shown in picture).
+
+If you want to obtain a list of configuration items (current and past) for a monitored resource, you should call the `GetResourceConfigHistroy` API
+
+**Note**
+
+By default, the AWS Config Console provides a list of events in reverse chronological order. SO the Start Date field referes to the most recent date for which the history is requested.
+
+**EON**
 
