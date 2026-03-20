@@ -736,3 +736,48 @@ The figure describes already inserting the AWS Config capabilities in the detect
     - **Batch** has the configuration snapshot and configuration history and uploads it to an S3 bucket
     
     - **Stream** is where configuration streams are sent to an SNS topic
+
+The main goal of AWS config is to record configuration and changes of the resources and not analyze them.
+
+In other words, AWS Config does not judge if a change is good or bad, or if it needs to execute an action.
+
+Such a role, will be accomplished by a componenet called *AWS Config Rules*, which is dicussed in the "Stage 3: Events Analysis" section.
+
+When considering multiple AWS accounts and regions, AWS Config provides the concept of an aggregator. 
+
+An **aggregator** is a Config resource type that allows you to access information about resources and compliance outside your current region and account.
+
+To set up an aggregator, first you choose one account and region to host it.
+
+Then, you configure the accounts and regions your aggregator will have access to (referred as source account and source regions).
+
+AWS Config integrates with the concept of AWS Organizations, so you can easily make all of the accounts inside one organization report to an aggregator.
+
+An aggregator can read configuration and compliance data recorded by AWS Config, but it cannot modify a resource's configuration.
+
+AWS Config can also integrate with external resources like on-premises servers and applications, third-party monitoring applications, or version control systems. You can publish configuration items for these resources to AWS Config, so you can manage the resource inventory.
+
+You can also have the resources registered with CloudFormation.
+
+In this case, if you apply changes to the resources using AWS CloudFormation templates, they will be recorded by AWS config.
+
+**NOTE**
+The AWS Config recorder component can be disabled at any time, which will cause it to stop checking for nre changes of the monitored resources, and so any other analysis will be disabled from that point on.
+
+However the recorder will keep available previous records until the end of the configured retention period
+
+**EON**
+
+#### Exercise 5.1 Set Up AWS Config
+
+1. Access the AWS Config Console.
+
+2. If this is the first time you've configured AWS Config in the chosen region, use the Get Started wized. Otherwise, open the Settings menu, click in the Edit button, and make sure the Enable Recording check box is selected.
+
+3. Under the General Settings section, choose "Record All Current and Future Resource Types Supported in this region" as your recording strategy. Select "Create AWS Config Service-Linked Role" (or "Use an Exisiting AWS Config Service-Linked Role" if you're not using the wizard) as the IAM role for AWS Config. Leave the "Include Globally Recorded Resource Types" check box unselected.
+
+4. Under the Delivery Method section, select Create a Bucket. Use the S3 bucket name of your preference, and type `security-chapter5` as its prefix. This will be the S3 bucket where AWS Config will deliver its files.
+
+5. Still within the Delivery Method section, mark the "Stream Configuration Changes and Notifications to an Amazon SNS Topic" check box. Select `Create a Topic` and name the topic `config-topic-security-chapter5`.
+
+6. 
