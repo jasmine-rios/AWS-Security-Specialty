@@ -823,3 +823,31 @@ Because of its myraid features, when approaching the AWS Systems Manager service
 - **Node Management**: Manages instances and nodes at scale.
 
 Some SSM capabilities allow you to interact with monitored resources (instances) at deeper levels (like gathering information directly from the operating system or applications, executing commands inside the operating system, or establishing a terminal administration channel to the instances).
+
+This deeper interaction is possible due to a software component called the *SSM agent*.
+
+The agent acts as the representative of the service inside the instance.
+
+One of the SSM's capabilities, called *inventory*, leverages the SSM agent to extract metadata (such as software and applications deployed within the instance), enabling the state tracking of these resources.
+
+Once the information is collected, SSM can export it to an S3 bucket of your own (by configuring a component called *resource data sync*).
+
+In SSM Inventory, you define the type of data you want to collect and how frequently; once an initial sync is completed, the resource data sync will keep the information in your Amazon S3 bucket updated accordingly.
+
+To access such information, you can query the Inventory capabililty in SSM (via console or API calls) or information in S3 (through Amazon Athena, or Amazon QuickSight).
+
+You can also use an embedded functionality in the SSM Inventory console called *detailed view*, which provides a way to directly query inventory information in your S3 bucket (exported by a resource data sync).
+
+This functionality in face uses Amazon Athena and AWS Glue.
+
+Next, the application manager capability (under the Application Management category) provides you with a better view of AWS resources in your account by grouping them under the concept of an *application* (a logical group of resources that you want to operate as a single unit).
+
+You can create a custom application by defining resource groups, or by a set of tags that your components share.
+
+You can also create a custom enterprise workload (like SAP HANA).
+
+Finally, you can define applications by importing group of resources from *AWS CloudFormation*, *Amazon EKS*, *Amazon ECS*, *AWS Service Catalog AppRegistry*, and *AWS Launch Wizard*.
+
+Once your application is defined in the *Application Manager*, it will consolidate data provided by other services like *AWS Config*, *AWS Billing*, and *Amazon CloudWatch* as well as providing other SSM capabilities.
+
+The Operations Management category is mostly applicable to stage 1 of the detective framework. The *Explorer*, *Ops Center*, and *CloudWatch* dashboards capabilities grouped under this category 
