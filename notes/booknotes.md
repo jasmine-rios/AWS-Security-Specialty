@@ -804,3 +804,22 @@ However the recorder will keep available previous records until the end of the c
 
 ### AWS Systems Manager
 
+AWS Systems Manager is a comprehensice service that assembles many capabilities. 
+
+As a whole, the service simplifies the administration of large fleets of instances (Amazon EC2, on-premises servers, or other cloud providers), especially for operational activities. 
+
+In the past, this service was known as AWS EC2 Simple Systems Manager.
+
+Today, you can refer to it simply as SSM (an acronym you will find in this book, as well as in the AWS offical documentation).
+
+Because of its myraid features, when approaching the AWS Systems Manager service, it is easier to analyze through the lens of its capabilities are grouped under these four categories:
+
+- **Operations management**: Provides the current state of your environment and how its component are performing. It covers features such as *Explorer*, *OpsCenter*, *CloudWatch Dashboard*, and *Incident Manager*.
+
+- **Application management**: Administers application distributed among several components, environments, and AWS accounts.
+
+- **Change management**: Allows you to specify a sequence of actions to be executed on your managed instances, and how to control its execution.
+
+- **Node Management**: Manages instances and nodes at scale.
+
+Some SSM capabilities allow you to interact with monitored resources (instances) at deeper levels (like gathering information directly from the operating system or applications, executing commands inside the operating system, or establishing a terminal administration channel to the instances).
