@@ -689,3 +689,50 @@ By default, the AWS Config Console provides a list of events in reverse chronolo
 
 **EON**
 
+As you can see, AWS Config records very useful information.
+
+To expose such information to the external world, the service leverages the concept of a delivery channel.
+
+Think about the delivery channel simply as the mandatory setup inside your configuration recorder, which defines an S3 bucket and an optional SNS topic that AWS Config uses to deliver information (such as the configuration snapshots) and notifications
+
+Depending on how the information is organized and delivered through the delivery channgel, you can have different views.
+
+Besides configuration snapshots and configuration timelines, AWS Config also provides a configuration history:
+
+**A collection of recorded configuration items that changed over a specified time period**
+
+AWS Config automatically delivers configuration history files every 6 hours to the S3 bucket configured in the delivery channel.
+
+Such a collection contains all configuration items of the monitoring resources that changed since the last delivery (if there were several changes during that period, each one of the configuration items would be part of the configuration history files).
+
+Each configuration history file corresponds to a different resource type.
+
+The information collected by AWS Config can also be provided in a stream, which means being notified as soon as change is detected.
+
+This method is called a configuration stream, and it uses the topic defined in the delivery channel.
+
+The same topic is used to deliver several notifications (like the creation of a historical record or a snapshot), so AWS Config uses the `messageType` key inside the message body to signal with information the notification contains.
+
+For the configuration stream, the value for the `messageType` key is `ConfigurationItemChangeNotification`.
+
+| Configuration View | Contains | Frequency | Deliver Channel |
+|--------|-----|-----------|-----------|
+| Configuration History Files | Files with all configuration items (grouped by resource type) of resources that changed since last delivery | 6 hours (fixed) |Amazon S3 bucket (`ConfigHistory` prefix) |
+| Configuration Snapshot | One file with all the current configuration items | Manual or configurable to 1, 3, 6, 12, 24 hours| Amazon S3 bucket (`ConfigSnapshot` prefix)|
+| Configuration Stream| Configuration items as messages in a topic, delivered as soon as they were detected by config | Continuous (within minutes) | Amazon SNS topic `messageType: ConfigurationItemChange`|
+
+With what you have learned, you can already insert the AWS Config capabilities in the detective framework proposed in this chapter's introduction.
+
+The figure describes already inserting the AWS Config capabilities in the detective framework proposed in this chapter's introduction
+
+  Description of the image: 
+    - **Stage 1** has the resources which are AWS resources and Custom Resources as well as a database of current and historical configuration
+
+    - **Stage 2** Is where the events of the resources are held in the database of Observable Records (Change Events). This is where also the changes (CRUD- Create, Read, Update, and Delete)
+
+    - **Exposition (to the Outside World)**:
+      - **On-Demand Access and visualization** has the configuration timeline and resources and advanced query to console and apps
+
+    - **Batch** has the configuration snapshot and configuration history and uploads it to an S3 bucket
+    
+    - **Stream** is where configuration streams are sent to an SNS topic
