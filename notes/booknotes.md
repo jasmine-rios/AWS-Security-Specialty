@@ -583,4 +583,16 @@ This collection of resouces is called the *recording group*
 
 Once you have the configuration reoroder created you can stop and start it via API calls or through the AWS Management Console.
 
-After the configuration recorder is successfully started, it is in "recording on" mode, and it tracks changes of the monitored resources by recording a new configuration item when a change in the configuration 
+After the configuration recorder is successfully started, it is in "recording on" mode, and it tracks changes of the monitored resources by recording a new configuration item when a change in the configuration is detected, either in the monitored resources itself or in any of its related monitored resources (Called *relationships* which you learn about later in this section).
+
+The CLI command `describe-configuration-recorder-status` returns the status of the configuration recorder.
+
+**NOTE**
+
+The configuration recorder captures information by calling the APIs of the monitored resouces. It takes a few minutes for the configuration recorder to update the changes after they occured.
+
+**EON**
+
+In essence, the configuration recorder saves each monitored resource's configuration and updates the information according to thr detected changes.
+
+The information gathered from each monitored resource is store in a construct 
