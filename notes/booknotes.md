@@ -526,5 +526,61 @@ There are stages to incident response:
   - Services can also provide access to observable records as a stream, which allows you to recieve the event as soon as it is reported.
 
 - Forth stage, is the *action* stage, you connect to the detection controls with reactive actions, through the **magic of automation in the cloud**.
+  You will learn more in Chapter 8, "Threat Detection and Incident Response" 
+
+  This chapter introduces you how some detective services can generate a response to observable events.
+
+  In the action stage, Amazon EventBridge is arguably one of the most powerful tools in the AWS Cloud.
+
+  The role of EventBridge is to connect the source of events with consumers who can respond to those events.
+
+  This chapter introduces several AWS Cloud services supporting differnent detective activities.
+
+  Although most of them carry out tasks for multiple stages in the detective control flow framework, you analyzw each one in light of its primary goal within the framework.
+
+  Stage 1: Resources State
+
+  The first stage in the detective framework focuses on knowing the state of the monitored resources.
+
+  AWS provides tools that assess the current situation of resources at different levels and keep historical track of their state.
+
+  Of course, having that kind of information enables AWS services to work into other stages via trigger actions and call to other services.
 
 
+### AWS Config
+
+AWS resources inside your account have their own configuration at each point in time.
+
+AWS Config is the services that allows you to keep track of the configuration of these AWS resources.
+
+In Chapter 2 you learned about the AWS Shared Responsibility Model.
+
+The observability of events is heavily based on that model.
+
+AWS Config provides you with information about monitored resources, visible to AWS because it falls in their part of the shared responsibility model, AWS Config obtains information like:
+
+- Instance ID
+- IAM role
+- IP addresses
+- Security groups from Amazon EC2 instances
+
+AWS Config does not have accesses to the processes that running into the instance
+
+AWS Config allows you to monitor several types of resources inside your account, including compute, serverless, databases, storage, and security, among many others.
+
+It starts monitoring by turning on a configuration recorder.
+
+This component's mission is to keep track of configuration items (a document containing the configuration information of a resource) for the monitored resources, updated them each time a resource is created, updated, or deleted.
+
+
+The service provides one configuration recorder per account per region. 
+
+You can define the resources you want to monitor per configuration recorder, as a choice between all supported resouces types (Current and future), define expectations, or define a subset of them.
+
+AWS Config documentation provides an updated list of supported resource types.
+
+This collection of resouces is called the *recording group*
+
+Once you have the configuration reoroder created you can stop and start it via API calls or through the AWS Management Console.
+
+After the configuration recorder is successfully started, it is in "recording on" mode, and it tracks changes of the monitored resources by recording a new configuration item when a change in the configuration 
