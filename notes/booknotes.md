@@ -796,4 +796,11 @@ However the recorder will keep available previous records until the end of the c
 
 13. In the resource list, click on the security group ID. Browse through the configuration item and resource timeline details. Do the same with the resource representing and recently launched EC2 instance.
 
-14. 
+14. Check the email account you configured in Step 9. You should have recieved notifications relate to your newly launched EC2 instance, and the modified security group.
+
+15. (Optional) Using AWS CloudShell, execute the `deliver-config-snapshot` command to have a snapshot (use the `describe-delivery-channels` command to gather information about Config delivery channels). Check the S3 bucket you created in Step 4. Look for snapshots files with `ConfigSnapshot` in the prefix.
+
+16. (Optional) Wait for 6 hours and check the S3 bucket for history files with `ConfigHistory` in their prefix.
+
+### AWS Systems Manager
+
