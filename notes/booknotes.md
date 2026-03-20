@@ -780,4 +780,20 @@ However the recorder will keep available previous records until the end of the c
 
 5. Still within the Delivery Method section, mark the "Stream Configuration Changes and Notifications to an Amazon SNS Topic" check box. Select `Create a Topic` and name the topic `config-topic-security-chapter5`.
 
-6. 
+6. If you are using the Get Started wized, click `Next` to finish the first part of the configuration. Otherwise, click `Save` and skip to Step 9.
+
+7. Click Next in the AWS Managed Rules page (at this point, you won't configure any AWS Config rules).
+
+8. Review the final page and click Confirm.
+
+9. Subscribe an email account to the Amazon SNS topic you created in Step 5.
+
+10. Execute changes in your account: launch a new EC2 instance. Once the new instance is running, modify the configuration of the security group attached to it.
+
+11. Wait 15 minutes.
+
+12. In the AWS Config Console, open the Resources menu. Select AWS EC2 Instance and AWS EC2 Security Group under the Resource Type field. The recently launched instance and the modified security group appear in the list.
+
+13. In the resource list, click on the security group ID. Browse through the configuration item and resource timeline details. Do the same with the resource representing and recently launched EC2 instance.
+
+14. 
