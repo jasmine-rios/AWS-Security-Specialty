@@ -612,3 +612,26 @@ The information gathered from each monitored resource is store in a construct ca
 
 You can think of a configuration item as a JSON object that contains the configuration of a resource from the AWS point of view (POV).
 
+In fact, this JSON file contains the following information:
+
+- Metadata
+- Attributes
+- Tags
+- Resource ID
+- Resource Type
+- Creation time
+- Amazon Resource Name
+- Availability zone
+- Relationships
+- Current configuration
+
+The current configuration section corresponds to the information that is retrieved by calling the describe or list APIs of the resource.
+
+Relationships are descriptions of connections among different resources.
+
+For example, an Amazon EC2 instance has a relationship with a network interface.
+
+From the network interface's standpoint, the relationship has the name "is attached to" (the instance); from the instance's point of view, the relationship has the name "contains" (the network interface).
+
+Such information is described as part of the JSON object.
+
