@@ -627,6 +627,8 @@ In fact, this JSON file contains the following information:
 
 The current configuration section corresponds to the information that is retrieved by calling the describe or list APIs of the resource.
 
+### Relationships
+
 Relationships are descriptions of connections among different resources.
 
 For example, an Amazon EC2 instance has a relationship with a network interface.
@@ -634,4 +636,23 @@ For example, an Amazon EC2 instance has a relationship with a network interface.
 From the network interface's standpoint, the relationship has the name "is attached to" (the instance); from the instance's point of view, the relationship has the name "contains" (the network interface).
 
 Such information is described as part of the JSON object.
+
+The available relationship are described in detail in the AWS Config documentation, if you are looking for more inforamtion
+
+**Notes**
+
+You can define the retention period for the configuration items, from 30 days to 2,557 dats (7 year, then default configuration)
+
+**EON**
+
+#### AWS Config Deep Dive
+
+AWS Config provides you with a repositiory of configurations for each monitored resource. You can look for a specific resource (or group of resources) and ask for their current configuration item.
+
+You can do it through the AWS Config Console, under the Resources menu, or you can use the `BatchGetResourceConfig` API.
+
+You can also use a SQL-like syntax to query information from the current configuration state of a monitored resource. This feature, called advanced querires, allows you to look for resource information directly inside the configuration items, without directly called APIs to the resource.
+
+The queries can be executed directly within the AWS Management Console or by calling the `SelectResourceConfig` API
+
 
