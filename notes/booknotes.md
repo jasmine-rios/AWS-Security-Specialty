@@ -895,3 +895,29 @@ In addition, there is context information about the event itself, like `eventVer
   - Data
   - Insight
 
+{
+  "eventVersion": "1.08",
+  "userIdentity": {
+      "type": "AssumedRole",
+      "principalId:" : "<principalId-number>
+      "arn" : "arn:aws:sts:<account-id>:assumed-role/<role>",
+      "accountId": "<account-id>",
+      "accessKeyId": "<accessket-Id-code>"
+      "sessionContext": {
+        "sessionIssuer" : {
+          "type": "Role",
+          "principalId": "",
+          "arn" : "arn:aws:iam::<account-id>:role/<role-id>",
+          "accountId": "<account-id>"
+          "userName" : "<user-name>"
+        },
+          "webIdFederationData": {},
+          "attributes": {
+            "creationDate": "2024-01-01T18:14:24Z",
+            "mfaAuthenticated": "true"
+          },
+          "ec2RoleDelivery": "2.0"
+      }
+  },
+  "eventTime": ""
+}
