@@ -919,5 +919,117 @@ In addition, there is context information about the event itself, like `eventVer
           "ec2RoleDelivery": "2.0"
       }
   },
-  "eventTime": ""
+  "eventTime": "2024-01-01T19:06:28Z",
+  "eventSource: "ssm.amazonaws.com",
+  "eventName": "UpdateInstanceInformation",
+  "awsRegion": "<input-aws-region>",
+  "sourceIPAddress: "<source-ip-address>",
+  "userAgent": "aws-sdk-go/1.44.260 (go1.20.10; linux; amd64)"
+  "requestParameters": {
+      "instanceId": "<enter-instance-id>",
+      "agentVersion": "3.2.1798.0",
+      "agentStatus": "Active",
+      "platformType": "Linux",
+      "platformName": "Amazon Linux",
+      "platformVersion": "2",
+      "ipAddress": "10.0.0.10",
+      "computerName": "<enter-computer-name>",
+      "agentName": "amazon-ssm-agent",
+      "availabilityZone": "<region>"
+      "availabilityZoneId": "<region-id>"
+      "sSMConnectionChannel": ""
+  },
+  "responseElemenets": null,
+  "requestID": "<insert-request-id>"
+  "eventID": "<insert-event-id>"
+  "readOnly": false,
+  "eventType": "awsApiCall",
+  "managementEvent": true,
+  "recipientAccountId": "<insert-recipient-id>",
+  "eventCategory" : "Management",
+  "tlsDetails" : {
+    "tlsVerson": "TLSv1.2",
+    "ciperSuite": "ECDHE-RDA-AES128-GCM-SHA256",
+    "clientProvidedHostHeader": "ssm.us-east-1.amazonaws.com"
+  }
+}
+
+While management, data, and insights events share most of the attributes in the JSON structure, insights events contain an additional attribute, called `insight-Details`
+
+#### Cloudtrail Insights Events
+
+{
+  "eventVersion": "1.09",
+  "eventTime": "2024-01-01T20:46:00Z"
+  "awsRegion": "<insert-aws-region>",
+  "eventID": "<9d876c5b-ae01-432b-88ce-1a876a11fb9b>",
+  "eventType": "AwsCloudTrailInsights",
+  "reciepientAccountId": "123456789012",
+  "sharedEventID": "fe6368fd-2286-4297-b127-157fd96d45ca",
+  "insightDetails": {
+      "state": "Start",
+      "eventSource": "cloudshell.amazonaws.com",
+      "eventName": "SendHeartBeat",
+      "insightType": "ApiCallRateInsight",
+      "insightContext": {
+          "statistics": {
+            "baseline": {
+                "average": 0.0001765848
+            },
+            "insight": {
+              "average": 0.0001765848
+            },
+            "insightDuration": 5,
+            "baselineDuration": 11326
+          },
+          "attributions": [
+            {
+              "attribute": "userIdentityArn",
+              "insight": [
+                {
+                  "value": "arn:aws:sts::123456789012",
+                  "average": 0.6
+                }
+              ],
+              "baseline": [
+                {
+                  "value": "arn:aws:sts::544491154384:<role>",
+                  "average" : 0.0001765848
+                }
+              ]
+            },
+            {
+              "attribute": "userAgent",
+              "insight": [
+                {
+                  "value": "<agent-description>",
+                  "average": 0.6
+                }
+              ],
+              "baseline": [
+                {
+                  "value": "<agent-description>",
+                  "average": 0.000.1765848
+                }
+              ]
+            },
+            {
+              "attribute": "errorCode",
+              "insight": [
+                {
+                  "value": "null",
+                  "average": 0.6
+                }
+              ],
+              baseline: [
+                {
+                  "value": "null",
+                  "average" 0.0001765848
+                }
+              ]
+            }
+          ]
+      }
+  },
+  "eventCategory": "Insight"
 }
