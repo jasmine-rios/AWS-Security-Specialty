@@ -1033,3 +1033,89 @@ While management, data, and insights events share most of the attributes in the 
   },
   "eventCategory": "Insight"
 }
+
+#### More info on AWS CloudTrail 
+
+CloudTrail is enabled at the creation of an AWS account. Management events recorded within the past 90 days are available in the Event History menu of AWS CloudTrail.
+
+This feature (available throught the AWS Management Console or via the `LookupEvents` API) allows you to view, search, and download management events related to the account during that timeline.
+
+**NOTE**
+
+AWS CloudTrail event history only shows management events, and not all management events are supposed to appear in event history.
+
+**EON**
+
+Insights events are events generated when CloudTrail detectes an abnormal volume of API call rates (anomalous call rate in write APIs) and API error rates (anomalous error rate in both read and write APIs).
+
+CloudTrail Insights are mathematical models and continuous monitoring of management events.
+
+Insights events are available through the AWS Management Console and through `LookupEvents` API.
+
+In the Insights console, you can access a list of insights events recorded for the last 90 days, see details of reported unusual activity, and view a timeseries graph.
+
+You have learned that you can access Management events and insights events for the last 90 days, see details of reported unusual activity, and view a timeseries graph.
+
+You have learned that you can access Management events and insights events for the last 90 days. 
+
+However, effectively managing an account requires a persistent layer that allows you to record events for longer than 90 days.
+
+In addition, to store records for future use (e.g. as evidence for audits), a persistent layer can also provide the foundations to analyze, visualize, and respond to events.
+
+CloudTrail provides two options for that persistent layer: trails and AWS CloudTrail Lake.
+
+A *trail* allows you to store AWS CloudTrail events in an Amazon S3 bucket that you own, in the form of log files.
+
+This way, you can control the life cycle policy and the retention and protection policies of the persisted data. You can create multiple trails.
+
+For each trail, you choose the type of events to record (management, data, or insights).
+
+Every trail must record management or data events (and it can record both), and a trail recording insights events must record management events.
+
+When creating a trail to recieve data events, you use selectors to establish which data to collect in the trail.
+
+Basic selectors are available for Amazon S3 and AWS Lambda data events.
+
+For all other supported services, you use advanced selectors, where you can filter events you want to collect by Amazon Resource Name, read/write operations, or event name.
+
+Each log file is compressed (in `gzip` format) and contains one or more JSON-for-matted records, where each record represents an event. AWS CloudTrail delivers log files several times an hour (about every 5 minutes).
+
+Typically, the log files for management and data events appear in your S3 bucket within 15 minutes after the activity was executed in the account.
+
+Insights events typically appear within 30 minutes after detecting the unusual activity.
+
+AWS CloudTrail stores management and data events in different log files (objects) from insights events.
+
+**NOTE**
+
+A trail has several configuration options. However, the minimum information required to create a new trail is its name and the Amazon S3 bucket name to store log files. By default, a trail records all management events and no insight or data events. The trail is always encrypted (using S3 server-side encryption), but other defauly options differ depending on whether you use the console or the API.
+
+**EON**
+
+**NOTE**
+
+AWS CloudTrail shows insights events in the Management console (or in the `LookupEvents` API) only if there is a trail configured to record those insights events.
+
+**EON**
+
+Once the records are stored in Amazon S3, you can use services, like Amazon Athena and Amazon QuickSight, to visualize and analyze them. Amazon Athena requires the creation of a table to define the structure of the data and its location within S3. Simply enough, AWS CloudTrail provides a way to create that table directly from its console, by clicking the Create Athena Table buttom on the Event History page/
+
+**NOTE**
+
+Using the AWS CloudTrail's console for creating the trail's table is not mandatory; you can also manually create the table in Athena.
+
+**EON**
+
+To protect the stored records, AWS CloudTrail provides encryption and integrity validation mechanisms.
+
+Because the records are stored in an Amazon S3 bucket, they are protected at least with the base level of encryption (using Amazon S3 managed keys).
+
+However, you can choose to use your own AWS Key Management Service (KMS) keys, specifying one key per trail.
+
+If you choose this option, the key policy must allow CloudTrail to use it to encrypt the files and allow choosen principals in the AWS account to decrypt them.
+
+You learn about AWS KMS is chapter 7, "Data Protection"
+
+AWS CloudTrail also embeds a trail integrity validation mechanism. This mechanism uses asymmetric cryptographic techniques (digital signatures) applied to the files delivered in S3 buckets.
+
+Using these techniques, AWS CloudTrail protects the records and allows you to determine if a delivered log file was modified, deleted, or unchanged
