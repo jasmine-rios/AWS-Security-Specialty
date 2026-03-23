@@ -891,3 +891,7 @@ The fields of a recorded event include the activity description and metadata.
 They provide information about *what* was done (for example, `eventName`, `eventSource`, `requestParameters`, `responseElements`, or `resources`), *who* did it (Information about the principal and how it was authenticated; for example, `userIdentity`, which itself includes other attributes like `type`, `principalID`, `arn` and `accountID`, when (eventTime), and *where* (for example, `awsRegion`, `sourceIPAddress`, `userAgent`, or `recipientAccountId`).
 
 In addition, there is context information about the event itself, like `eventVersion`, `eventType`, `eventCategory`, and `tlsDetails` attributes. Depending on the event, the `eventCategory` field takes one of the three values:
+  - Management
+  - Data
+  - Insight
+
