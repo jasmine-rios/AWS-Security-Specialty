@@ -19,7 +19,12 @@ Three overlapping
 Labels
 Font: Clear, sans-serif font (such as Arial or Roboto) for readability
 
-Legend
+Legend: A small legend explaning key terms
+
+Content
+AWS(Left Circle)
+Azure (Right Circle)
+GCP (Bottom Circle)
 ```
 
 # References
