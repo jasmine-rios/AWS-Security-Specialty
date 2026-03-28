@@ -6,6 +6,8 @@ You can use graphs, charts and ven digrams to present information more efficecti
 
 You can use prompt engineering:
 
+## Example One
+
 ```bash
 #Title: IAM Roles and Permissions in AWS, Azure, and GCP diagram structure
 -Diagram Structure
@@ -25,6 +27,19 @@ GCP (Bottom Circle)]
 AWS and GCP Overlap
 Azure and GCP Overlap
 Central Overlap (AWS, Azure, GCP)]
+```
+
+## Example Two
+
+```bash
+
+# Title: IAM Roles and Permissions in AWS, Azure, and GCP
+
+## Diagram Structure:
+    - **Three overlapping circles** forming a classic venn digram
+    - Each circle represents one cloud provider: **AWS** (left), **Azure** (right), **GCP** (bottom)
+
+## Labels
 ```
 
 # References
