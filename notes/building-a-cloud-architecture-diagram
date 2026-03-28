@@ -7,20 +7,13 @@ You can use graphs, charts and ven digrams to present information more efficecti
 You can use prompt engineering:
 
 ```bash
-
 Title: IAM Roles and Permissions in AWS, Azure, and GCP diagram structure
-
 Diagram Structure
-
 Three overlapping 
-
 - Each circle represents one cloud provider AWS (left), Azure (right)
-
 Labels
 Font: Clear, sans-serif font (such as Arial or Roboto) for readability
-
 Legend: A small legend explaning key terms
-
 Content
 AWS(Left Circle)
 Azure (Right Circle)
