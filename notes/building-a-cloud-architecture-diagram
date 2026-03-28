@@ -39,7 +39,11 @@ Central Overlap (AWS, Azure, GCP)]
     - **Three overlapping circles** forming a classic venn digram
     - Each circle represents one cloud provider: **AWS** (left), **Azure** (right), **GCP** (bottom)
 
-## Labels
+## Labels:
+   
+    - Unique features are listed inside each circle's non-overlapping sections
+
+    - Shared features
 ```
 
 # References
