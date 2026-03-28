@@ -25,6 +25,10 @@ Content
 AWS(Left Circle)
 Azure (Right Circle)
 GCP (Bottom Circle)
+AWS and Azure Overlap
+AWS and GCP Overlap
+Azure and GCP Overlap
+Central Overlap (AWS, Azure, GCP)
 ```
 
 # References
