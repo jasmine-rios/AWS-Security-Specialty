@@ -1,2 +1,27 @@
 # Building a Cloud Architecture Diagram
 
+Notes taken from Linkedin Learning 
+
+You can use graphs, charts and ven digrams to present information more efficectively.
+
+You can use prompt engineering:
+
+```bash
+
+Title: IAM Roles and Permissions in AWS, Azure, and GCP diagram structure
+
+Diagram Structure
+
+Three overlapping 
+
+- Each circle represents one cloud provider AWS (left), Azure (right)
+
+Labels
+Font: Clear, sans-serif font (such as Arial or Roboto) for readability
+
+Legend
+```
+
+# References
+
+- (Building-a-cloud-architecture-diagram.md)[https://www.linkedin.com/learning/building-a-cloud-architecture-diagram/uml-examples-for-ai-systems?autoSkip=true&contextUrn=urn%3Ali%3Ala_learningPlanV2%3AAEQAAClX2UsBfUU0fyY0mKkbZBO39tBYUlrZsy0&resume=false]
