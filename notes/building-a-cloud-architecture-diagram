@@ -46,6 +46,25 @@ Central Overlap (AWS, Azure, GCP)]
     - Shared features are placed in the overlapping sections (two-way and )
 ```
 
+```bash
+Title: IAM Roles and Permissions in AWS, Azure, GCP
+Diagram Structure:
+- Three overlapping circles forming a classic Venn Diagram
+- Each circle represents one cloud provider: AWS (Left), Azure (right), GCP (bottom)
+- Labels:
+    - Unique features are listed inside each circle's non-overlapping sections
+    - Shared features are places in the overlapping sections (two-way and three-way overlaps)
+    - The Title is centered above the diagram
+- Colors:
+    - AWS: Orange
+    - Azure: Blue
+    - GCP: Green
+    - Overlaps: Blended shades (such as orange-blue for AWS-Azure, green-blue for GCP-Azure)
+    Font: Clear, sans-serif font (such as Arial or Roboto) for readability
+
+
+```
+
 # References
 
 - (Building-a-cloud-architecture-diagram.md)[https://www.linkedin.com/learning/building-a-cloud-architecture-diagram/uml-examples-for-ai-systems?autoSkip=true&contextUrn=urn%3Ali%3Ala_learningPlanV2%3AAEQAAClX2UsBfUU0fyY0mKkbZBO39tBYUlrZsy0&resume=false]
